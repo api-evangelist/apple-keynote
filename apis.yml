@@ -1,0 +1,51 @@
+name: Apple Keynote API
+description: API for Apple Keynote presentation software, enabling programmatic access to create, edit, and manage presentations
+image: https://www.apple.com/v/keynote/o/images/overview/keynote_icon__e6u8i7ju7e2e_large.jpg
+url: https://www.apple.com/keynote/
+created: '2024'
+modified: '2024'
+specificationVersion: '0.18'
+apis:
+- name: Keynote iCloud API
+  description: Cloud-based API for accessing and manipulating Keynote presentations through iCloud
+  image: https://www.apple.com/v/keynote/o/images/overview/keynote_icon__e6u8i7ju7e2e_large.jpg
+  humanURL: https://www.icloud.com/keynote
+  baseURL: https://p00-keynote.icloud.com
+  properties:
+  - type: Documentation
+    url: https://developer.apple.com/documentation/keynotekit
+  - type: OpenAPI
+    url: https://api.example.com/keynote/openapi.json
+  tags:
+  - Presentations
+  - Slides
+  - Cloud Storage
+  - Collaboration
+  contact:
+  - FN: Apple Developer Support
+    email: developer@apple.com
+    url: https://developer.apple.com/contact/
+- name: Keynote AppleScript API
+  description: Local automation API for Keynote using AppleScript
+  humanURL: https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/
+  properties:
+  - type: Documentation
+    url: https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/KeynoteScriptingGuide/
+  - type: Dictionary
+    url: file:///Applications/Keynote.app/Contents/Resources/Keynote.sdef
+  tags:
+  - Automation
+  - Scripting
+  - macOS
+  - Local API
+maintainers:
+- FN: Apple Inc.
+  email: developer@apple.com
+  url: https://www.apple.com
+tags:
+- Presentations
+- Productivity
+- Apple
+- iWork
+- Slides
+- Design
