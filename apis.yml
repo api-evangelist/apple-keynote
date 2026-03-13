@@ -3,7 +3,7 @@ description: API for Apple Keynote presentation software, enabling programmatic 
 image: https://www.apple.com/v/keynote/o/images/overview/keynote_icon__e6u8i7ju7e2e_large.jpg
 url: https://www.apple.com/keynote/
 created: '2024'
-modified: '2024'
+modified: '2026-03-04'
 specificationVersion: '0.18'
 apis:
 - name: Keynote iCloud API
@@ -38,10 +38,63 @@ apis:
   - Scripting
   - macOS
   - Local API
+- name: Keynote JavaScript for Automation API
+  description: >-
+    JavaScript-based automation interface for controlling Keynote on macOS.
+    Provides the same automation capabilities as AppleScript using JavaScript
+    syntax through the Open Scripting Architecture.
+  image: https://www.apple.com/v/keynote/o/images/overview/keynote_icon__e6u8i7ju7e2e_large.jpg
+  humanURL: https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/
+  tags:
+  - JavaScript
+  - Automation
+  - macOS
+  - Scripting
+  properties:
+  - type: Documentation
+    url: https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/
+- name: Keynote Shortcuts Actions
+  description: >-
+    Shortcuts app actions for Keynote on iOS, iPadOS, and macOS, enabling
+    users to open, create, and export presentations as part of automated
+    workflows including format conversion and template generation.
+  image: https://www.apple.com/v/keynote/o/images/overview/keynote_icon__e6u8i7ju7e2e_large.jpg
+  humanURL: https://developer.apple.com/shortcuts/
+  tags:
+  - Shortcuts
+  - Automation
+  - iOS
+  - Workflows
+  properties:
+  - type: Documentation
+    url: https://developer.apple.com/documentation/appintents/app-shortcuts
+common:
+- type: Portal
+  url: https://developer.apple.com/
+- type: Website
+  url: https://www.apple.com/keynote/
+- type: Documentation
+  url: https://support.apple.com/guide/keynote/
+- type: JSONSchema
+  url: json-schema/apple-keynote-presentation-schema.json
+- type: JSON-LD
+  url: json-ld/apple-keynote-context.jsonld
+- type: Support
+  url: https://developer.apple.com/support/
+- type: Community
+  url: https://developer.apple.com/forums/
+- type: Terms of Service
+  url: https://developer.apple.com/support/terms/
+- type: Privacy Policy
+  url: https://www.apple.com/privacy/
+- type: Stack Overflow
+  url: https://stackoverflow.com/questions/tagged/keynote
+- type: YouTube
+  url: https://www.youtube.com/@AppleDeveloper
 maintainers:
-- FN: Apple Inc.
-  email: developer@apple.com
-  url: https://www.apple.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+  url: https://apievangelist.com
 tags:
 - Presentations
 - Productivity

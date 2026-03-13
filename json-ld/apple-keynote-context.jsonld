@@ -1,0 +1,192 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "keynote": "https://github.com/api-search/apple-keynote/json-ld/apple-keynote-context.jsonld#",
+
+    "KeynotePresentation": {
+      "@id": "schema:PresentationDigitalDocument",
+      "@context": {
+        "title": "schema:name",
+        "description": "schema:description",
+        "author": "schema:author",
+        "createdDate": "schema:dateCreated",
+        "modifiedDate": "schema:dateModified",
+        "theme": "keynote:theme",
+        "slideSize": "keynote:slideSize",
+        "slides": "schema:hasPart",
+        "metadata": "keynote:metadata"
+      }
+    },
+
+    "Slide": {
+      "@id": "keynote:Slide",
+      "@context": {
+        "slideNumber": "schema:position",
+        "title": "schema:name",
+        "layout": "keynote:slideLayout",
+        "skipped": "keynote:skipped",
+        "notes": "schema:description",
+        "backgroundColor": "keynote:backgroundColor",
+        "backgroundImage": "schema:image",
+        "elements": "schema:hasPart",
+        "transition": "keynote:transition",
+        "builds": "keynote:builds"
+      }
+    },
+
+    "SlideElement": {
+      "@id": "schema:CreativeWork",
+      "@context": {
+        "type": "schema:additionalType",
+        "name": "schema:name",
+        "position": "schema:spatialCoverage",
+        "size": "keynote:size",
+        "rotation": "keynote:rotation",
+        "opacity": "keynote:opacity",
+        "locked": "keynote:locked"
+      }
+    },
+
+    "TextElement": {
+      "@id": "schema:TextDigitalDocument",
+      "@context": {
+        "content": "schema:text",
+        "richText": "keynote:richText",
+        "alignment": "keynote:textAlignment",
+        "verticalAlignment": "keynote:verticalAlignment",
+        "listStyle": "keynote:listStyle"
+      }
+    },
+
+    "TextRun": {
+      "@id": "keynote:TextRun",
+      "@context": {
+        "text": "schema:text",
+        "fontFamily": "keynote:fontFamily",
+        "fontSize": "keynote:fontSize",
+        "fontColor": "schema:color",
+        "bold": "keynote:bold",
+        "italic": "keynote:italic",
+        "underline": "keynote:underline",
+        "strikethrough": "keynote:strikethrough",
+        "hyperlink": "schema:url"
+      }
+    },
+
+    "ImageElement": {
+      "@id": "schema:ImageObject",
+      "@context": {
+        "url": "schema:contentUrl",
+        "fileName": "schema:name",
+        "mimeType": "schema:encodingFormat",
+        "altText": "schema:description",
+        "naturalWidth": "schema:width",
+        "naturalHeight": "schema:height"
+      }
+    },
+
+    "ShapeElement": {
+      "@id": "keynote:ShapeElement",
+      "@context": {
+        "shapeType": "schema:additionalType",
+        "fillColor": "schema:color",
+        "fillGradient": "keynote:gradient",
+        "strokeColor": "keynote:strokeColor",
+        "strokeWidth": "keynote:strokeWidth",
+        "cornerRadius": "keynote:cornerRadius",
+        "shadow": "keynote:shadow"
+      }
+    },
+
+    "TableElement": {
+      "@id": "schema:Table",
+      "@context": {
+        "rows": "keynote:rowCount",
+        "columns": "keynote:columnCount",
+        "headerRowCount": "keynote:headerRowCount",
+        "headerColumnCount": "keynote:headerColumnCount",
+        "cells": "keynote:cells"
+      }
+    },
+
+    "ChartElement": {
+      "@id": "keynote:ChartElement",
+      "@context": {
+        "chartType": "schema:additionalType",
+        "title": "schema:name",
+        "legendPosition": "keynote:legendPosition",
+        "dataSeries": "keynote:dataSeries"
+      }
+    },
+
+    "Transition": {
+      "@id": "keynote:Transition",
+      "@context": {
+        "type": "schema:additionalType",
+        "duration": "schema:duration",
+        "direction": "keynote:direction",
+        "trigger": "keynote:trigger",
+        "delay": "keynote:delay"
+      }
+    },
+
+    "BuildAnimation": {
+      "@id": "keynote:BuildAnimation",
+      "@context": {
+        "elementName": "schema:name",
+        "type": "schema:additionalType",
+        "effect": "keynote:effect",
+        "duration": "schema:duration",
+        "delay": "keynote:delay",
+        "trigger": "keynote:trigger",
+        "order": "schema:position",
+        "delivery": "keynote:delivery"
+      }
+    },
+
+    "Theme": {
+      "@id": "keynote:Theme",
+      "@context": {
+        "name": "schema:name",
+        "identifier": "schema:identifier",
+        "colorScheme": "keynote:colorScheme",
+        "fontFamily": "keynote:fontFamily"
+      }
+    },
+
+    "Metadata": {
+      "@id": "keynote:Metadata",
+      "@context": {
+        "keywords": "schema:keywords",
+        "language": "schema:inLanguage",
+        "version": "schema:version",
+        "keynoteVersion": "schema:softwareVersion",
+        "slideCount": "keynote:slideCount",
+        "duration": "schema:duration",
+        "passwordProtected": "keynote:passwordProtected",
+        "collaborators": "schema:contributor"
+      }
+    },
+
+    "title": "schema:name",
+    "description": "schema:description",
+    "author": "schema:author",
+    "createdDate": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "modifiedDate": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "hyperlink": {
+      "@id": "schema:url",
+      "@type": "@id"
+    }
+  }
+}

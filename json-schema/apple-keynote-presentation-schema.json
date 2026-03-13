@@ -1,0 +1,864 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/api-search/apple-keynote/json-schema/apple-keynote-presentation-schema.json",
+  "title": "Apple Keynote Presentation",
+  "description": "Schema representing the structure of an Apple Keynote presentation, including slides, text elements, images, shapes, transitions, and build animations.",
+  "type": "object",
+  "required": [
+    "title",
+    "slides"
+  ],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the Keynote presentation."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description or subtitle for the presentation."
+    },
+    "author": {
+      "type": "string",
+      "description": "The author or creator of the presentation."
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the presentation was created."
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time the presentation was last modified."
+    },
+    "theme": {
+      "$ref": "#/$defs/Theme",
+      "description": "The theme applied to the presentation."
+    },
+    "slideSize": {
+      "$ref": "#/$defs/SlideSize",
+      "description": "The dimensions of the presentation slides."
+    },
+    "slides": {
+      "type": "array",
+      "description": "The ordered collection of slides in the presentation.",
+      "items": {
+        "$ref": "#/$defs/Slide"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata",
+      "description": "Additional metadata about the presentation."
+    }
+  },
+  "$defs": {
+    "Theme": {
+      "type": "object",
+      "description": "A Keynote theme that defines the visual style of a presentation.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The name of the theme."
+        },
+        "identifier": {
+          "type": "string",
+          "description": "A unique identifier for the theme."
+        },
+        "colorScheme": {
+          "type": "array",
+          "description": "The primary colors used in the theme.",
+          "items": {
+            "type": "string",
+            "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+          }
+        },
+        "fontFamily": {
+          "type": "string",
+          "description": "The default font family for the theme."
+        }
+      }
+    },
+    "SlideSize": {
+      "type": "object",
+      "description": "The pixel dimensions of the presentation slides.",
+      "required": [
+        "width",
+        "height"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "description": "The width of the slide in points.",
+          "examples": [
+            1920,
+            1024
+          ]
+        },
+        "height": {
+          "type": "integer",
+          "description": "The height of the slide in points.",
+          "examples": [
+            1080,
+            768
+          ]
+        }
+      }
+    },
+    "Slide": {
+      "type": "object",
+      "description": "A single slide within the Keynote presentation.",
+      "required": [
+        "slideNumber"
+      ],
+      "properties": {
+        "slideNumber": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The 1-based position of the slide in the presentation."
+        },
+        "title": {
+          "type": "string",
+          "description": "The title displayed on the slide."
+        },
+        "layout": {
+          "type": "string",
+          "description": "The slide layout or master slide name.",
+          "examples": [
+            "Title - Center",
+            "Title - Top",
+            "Title & Subtitle",
+            "Title & Bullets",
+            "Bullets",
+            "Photo",
+            "Photo - Horizontal",
+            "Photo - Vertical",
+            "Quote",
+            "Blank",
+            "Title, Bullets & Photo",
+            "Statement",
+            "Big Number"
+          ]
+        },
+        "skipped": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether this slide is skipped during playback."
+        },
+        "notes": {
+          "type": "string",
+          "description": "Presenter notes associated with the slide."
+        },
+        "backgroundColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "description": "The background color of the slide in hex format."
+        },
+        "backgroundImage": {
+          "$ref": "#/$defs/ImageElement",
+          "description": "An image used as the slide background."
+        },
+        "elements": {
+          "type": "array",
+          "description": "The visual elements placed on the slide.",
+          "items": {
+            "$ref": "#/$defs/SlideElement"
+          }
+        },
+        "transition": {
+          "$ref": "#/$defs/Transition",
+          "description": "The transition effect used when advancing to this slide."
+        },
+        "builds": {
+          "type": "array",
+          "description": "Build animations that control the order elements appear on the slide.",
+          "items": {
+            "$ref": "#/$defs/BuildAnimation"
+          }
+        }
+      }
+    },
+    "SlideElement": {
+      "type": "object",
+      "description": "A visual element placed on a slide.",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "text",
+            "image",
+            "shape",
+            "table",
+            "chart",
+            "video",
+            "audio",
+            "group"
+          ],
+          "description": "The type of slide element."
+        },
+        "name": {
+          "type": "string",
+          "description": "An optional name or label for the element."
+        },
+        "position": {
+          "$ref": "#/$defs/Position",
+          "description": "The position of the element on the slide."
+        },
+        "size": {
+          "$ref": "#/$defs/Size",
+          "description": "The width and height of the element."
+        },
+        "rotation": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 360,
+          "description": "The rotation angle of the element in degrees."
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 1,
+          "description": "The opacity of the element from 0 (transparent) to 1 (opaque)."
+        },
+        "locked": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the element is locked from editing."
+        },
+        "text": {
+          "$ref": "#/$defs/TextElement",
+          "description": "Text content and formatting, when type is text."
+        },
+        "image": {
+          "$ref": "#/$defs/ImageElement",
+          "description": "Image content and properties, when type is image."
+        },
+        "shape": {
+          "$ref": "#/$defs/ShapeElement",
+          "description": "Shape properties, when type is shape."
+        },
+        "table": {
+          "$ref": "#/$defs/TableElement",
+          "description": "Table content and structure, when type is table."
+        },
+        "chart": {
+          "$ref": "#/$defs/ChartElement",
+          "description": "Chart properties and data, when type is chart."
+        },
+        "children": {
+          "type": "array",
+          "description": "Child elements when type is group.",
+          "items": {
+            "$ref": "#/$defs/SlideElement"
+          }
+        }
+      }
+    },
+    "Position": {
+      "type": "object",
+      "description": "The x and y coordinates of an element on the slide.",
+      "required": [
+        "x",
+        "y"
+      ],
+      "properties": {
+        "x": {
+          "type": "number",
+          "description": "The horizontal position in points from the left edge."
+        },
+        "y": {
+          "type": "number",
+          "description": "The vertical position in points from the top edge."
+        }
+      }
+    },
+    "Size": {
+      "type": "object",
+      "description": "The width and height dimensions of an element.",
+      "required": [
+        "width",
+        "height"
+      ],
+      "properties": {
+        "width": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The width of the element in points."
+        },
+        "height": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The height of the element in points."
+        }
+      }
+    },
+    "TextElement": {
+      "type": "object",
+      "description": "A text element containing rich text content.",
+      "properties": {
+        "content": {
+          "type": "string",
+          "description": "The plain text content."
+        },
+        "richText": {
+          "type": "array",
+          "description": "Rich text runs with individual formatting.",
+          "items": {
+            "$ref": "#/$defs/TextRun"
+          }
+        },
+        "alignment": {
+          "type": "string",
+          "enum": [
+            "left",
+            "center",
+            "right",
+            "justify"
+          ],
+          "description": "The horizontal text alignment."
+        },
+        "verticalAlignment": {
+          "type": "string",
+          "enum": [
+            "top",
+            "middle",
+            "bottom"
+          ],
+          "description": "The vertical text alignment within the text box."
+        },
+        "listStyle": {
+          "type": "string",
+          "enum": [
+            "none",
+            "bullet",
+            "numbered",
+            "lettered",
+            "dash",
+            "image"
+          ],
+          "description": "The list style applied to the text."
+        }
+      }
+    },
+    "TextRun": {
+      "type": "object",
+      "description": "A run of text with consistent formatting.",
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "description": "The text content of this run."
+        },
+        "fontFamily": {
+          "type": "string",
+          "description": "The font family for this text run."
+        },
+        "fontSize": {
+          "type": "number",
+          "minimum": 1,
+          "description": "The font size in points."
+        },
+        "fontColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "description": "The text color in hex format."
+        },
+        "bold": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the text is bold."
+        },
+        "italic": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the text is italic."
+        },
+        "underline": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the text is underlined."
+        },
+        "strikethrough": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the text has a strikethrough."
+        },
+        "hyperlink": {
+          "type": "string",
+          "format": "uri",
+          "description": "A URL hyperlink attached to this text run."
+        }
+      }
+    },
+    "ImageElement": {
+      "type": "object",
+      "description": "An image element on a slide.",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The URL or file path of the image."
+        },
+        "fileName": {
+          "type": "string",
+          "description": "The original file name of the image."
+        },
+        "mimeType": {
+          "type": "string",
+          "description": "The MIME type of the image.",
+          "examples": [
+            "image/png",
+            "image/jpeg",
+            "image/tiff",
+            "image/gif",
+            "image/heic"
+          ]
+        },
+        "altText": {
+          "type": "string",
+          "description": "Accessibility description for the image."
+        },
+        "naturalWidth": {
+          "type": "integer",
+          "description": "The original width of the image in pixels."
+        },
+        "naturalHeight": {
+          "type": "integer",
+          "description": "The original height of the image in pixels."
+        }
+      }
+    },
+    "ShapeElement": {
+      "type": "object",
+      "description": "A geometric shape element on a slide.",
+      "properties": {
+        "shapeType": {
+          "type": "string",
+          "description": "The type of shape.",
+          "examples": [
+            "rectangle",
+            "roundedRectangle",
+            "ellipse",
+            "triangle",
+            "diamond",
+            "arrow",
+            "star",
+            "polygon",
+            "line",
+            "callout"
+          ]
+        },
+        "fillColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "description": "The fill color of the shape in hex format."
+        },
+        "fillGradient": {
+          "$ref": "#/$defs/Gradient",
+          "description": "A gradient fill for the shape."
+        },
+        "strokeColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "description": "The stroke (border) color of the shape."
+        },
+        "strokeWidth": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The width of the shape stroke in points."
+        },
+        "cornerRadius": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The corner radius for rounded rectangles."
+        },
+        "shadow": {
+          "$ref": "#/$defs/Shadow",
+          "description": "A drop shadow applied to the shape."
+        }
+      }
+    },
+    "Gradient": {
+      "type": "object",
+      "description": "A gradient fill definition.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "linear",
+            "radial"
+          ],
+          "description": "The type of gradient."
+        },
+        "angle": {
+          "type": "number",
+          "description": "The angle of a linear gradient in degrees."
+        },
+        "stops": {
+          "type": "array",
+          "description": "The color stops in the gradient.",
+          "items": {
+            "type": "object",
+            "required": [
+              "color",
+              "position"
+            ],
+            "properties": {
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$"
+              },
+              "position": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "The position of the stop from 0 to 1."
+              }
+            }
+          }
+        }
+      }
+    },
+    "Shadow": {
+      "type": "object",
+      "description": "A shadow effect applied to an element.",
+      "properties": {
+        "color": {
+          "type": "string",
+          "pattern": "^#[0-9a-fA-F]{6}([0-9a-fA-F]{2})?$",
+          "description": "The shadow color."
+        },
+        "offsetX": {
+          "type": "number",
+          "description": "The horizontal shadow offset in points."
+        },
+        "offsetY": {
+          "type": "number",
+          "description": "The vertical shadow offset in points."
+        },
+        "blurRadius": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The blur radius of the shadow in points."
+        },
+        "opacity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "The opacity of the shadow."
+        }
+      }
+    },
+    "TableElement": {
+      "type": "object",
+      "description": "A table element containing rows and columns of data.",
+      "properties": {
+        "rows": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The number of rows in the table."
+        },
+        "columns": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The number of columns in the table."
+        },
+        "headerRowCount": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 1,
+          "description": "The number of header rows."
+        },
+        "headerColumnCount": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0,
+          "description": "The number of header columns."
+        },
+        "cells": {
+          "type": "array",
+          "description": "The table cell data in row-major order.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "row": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "column": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "value": {
+                "type": "string",
+                "description": "The text content of the cell."
+              }
+            }
+          }
+        }
+      }
+    },
+    "ChartElement": {
+      "type": "object",
+      "description": "A chart element for visualizing data.",
+      "properties": {
+        "chartType": {
+          "type": "string",
+          "enum": [
+            "bar",
+            "column",
+            "line",
+            "area",
+            "pie",
+            "donut",
+            "scatter",
+            "bubble",
+            "radar"
+          ],
+          "description": "The type of chart."
+        },
+        "title": {
+          "type": "string",
+          "description": "The chart title."
+        },
+        "legendPosition": {
+          "type": "string",
+          "enum": [
+            "top",
+            "bottom",
+            "left",
+            "right",
+            "none"
+          ],
+          "description": "The position of the chart legend."
+        },
+        "dataSeries": {
+          "type": "array",
+          "description": "The data series in the chart.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "The name of the data series."
+              },
+              "values": {
+                "type": "array",
+                "items": {
+                  "type": "number"
+                },
+                "description": "The numerical values in the series."
+              }
+            }
+          }
+        }
+      }
+    },
+    "Transition": {
+      "type": "object",
+      "description": "A transition effect applied when advancing to a slide.",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "The type of transition effect.",
+          "examples": [
+            "none",
+            "dissolve",
+            "fade",
+            "push",
+            "reveal",
+            "moveIn",
+            "wipe",
+            "swirl",
+            "cube",
+            "flip",
+            "doorway",
+            "fall",
+            "clothesline",
+            "confetti",
+            "droplet",
+            "flop",
+            "iris",
+            "magic_move",
+            "mosaic",
+            "object_cube",
+            "object_flip",
+            "object_pop",
+            "perspective",
+            "pivot",
+            "shimmer",
+            "sparkle",
+            "swing",
+            "swoosh",
+            "twirl",
+            "twist"
+          ]
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The duration of the transition in seconds."
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right",
+            "up",
+            "down"
+          ],
+          "description": "The direction of the transition effect where applicable."
+        },
+        "trigger": {
+          "type": "string",
+          "enum": [
+            "onClick",
+            "automatic"
+          ],
+          "default": "onClick",
+          "description": "How the transition is triggered."
+        },
+        "delay": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Delay in seconds before an automatic transition starts."
+        }
+      }
+    },
+    "BuildAnimation": {
+      "type": "object",
+      "description": "A build animation that controls how an element appears, moves, or disappears on a slide.",
+      "properties": {
+        "elementName": {
+          "type": "string",
+          "description": "The name of the element this build animation targets."
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "buildIn",
+            "action",
+            "buildOut"
+          ],
+          "description": "Whether this is a build-in, action, or build-out animation."
+        },
+        "effect": {
+          "type": "string",
+          "description": "The animation effect.",
+          "examples": [
+            "appear",
+            "dissolve",
+            "fade",
+            "move",
+            "scale",
+            "blinds",
+            "bounce",
+            "confetti",
+            "flame",
+            "flip",
+            "pop",
+            "pulse",
+            "skid",
+            "sparkle",
+            "typewriter",
+            "wipe"
+          ]
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The duration of the animation in seconds."
+        },
+        "delay": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Delay before the animation starts in seconds."
+        },
+        "trigger": {
+          "type": "string",
+          "enum": [
+            "onClick",
+            "withPrevious",
+            "afterPrevious"
+          ],
+          "description": "How the build animation is triggered."
+        },
+        "order": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "The build order position on the slide."
+        },
+        "delivery": {
+          "type": "string",
+          "enum": [
+            "allAtOnce",
+            "byBullet",
+            "byBulletGroup",
+            "byHighlightedParagraph"
+          ],
+          "description": "How text elements are delivered during the build."
+        }
+      }
+    },
+    "Metadata": {
+      "type": "object",
+      "description": "Additional metadata about the Keynote presentation.",
+      "properties": {
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Keywords or tags for the presentation."
+        },
+        "language": {
+          "type": "string",
+          "description": "The primary language of the presentation content.",
+          "examples": [
+            "en",
+            "es",
+            "fr",
+            "de",
+            "ja",
+            "zh"
+          ]
+        },
+        "version": {
+          "type": "string",
+          "description": "The version of the presentation."
+        },
+        "keynoteVersion": {
+          "type": "string",
+          "description": "The version of Keynote used to create the presentation."
+        },
+        "slideCount": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The total number of slides in the presentation."
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The estimated duration of the presentation in seconds."
+        },
+        "passwordProtected": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether the presentation is password protected."
+        },
+        "collaborators": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "List of collaborators on the presentation."
+        }
+      }
+    }
+  }
+}
