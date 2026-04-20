@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://github.com/api-search/apple-keynote/json-structure/apple-keynote-presentation-structure.json",
+  "name": "Apple Keynote Presentation",
+  "description": "Schema representing the structure of an Apple Keynote presentation, including slides, text elements, images, shapes, transitions, and build animations.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "The title of the Keynote presentation."
+    },
+    "description": {
+      "type": "string",
+      "description": "A description or subtitle for the presentation."
+    },
+    "author": {
+      "type": "string",
+      "description": "The author or creator of the presentation."
+    },
+    "createdDate": {
+      "type": "datetime",
+      "description": "The date and time the presentation was created."
+    },
+    "modifiedDate": {
+      "type": "datetime",
+      "description": "The date and time the presentation was last modified."
+    },
+    "theme": {
+      "$ref": "#/$defs/Theme",
+      "description": "The theme applied to the presentation."
+    },
+    "slideSize": {
+      "$ref": "#/$defs/SlideSize",
+      "description": "The dimensions of the presentation slides."
+    },
+    "slides": {
+      "type": "array",
+      "description": "The ordered collection of slides in the presentation.",
+      "items": {
+        "$ref": "#/$defs/Slide"
+      }
+    },
+    "metadata": {
+      "$ref": "#/$defs/Metadata",
+      "description": "Additional metadata about the presentation."
+    }
+  },
+  "required": [
+    "title",
+    "slides"
+  ]
+}

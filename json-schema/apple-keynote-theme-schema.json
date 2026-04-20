@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apple-keynote/refs/heads/main/json-schema/apple-keynote-theme-schema.json",
+  "title": "Theme",
+  "description": "An Apple Keynote theme defining the visual style of a presentation",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Display name of the theme",
+      "example": "White"
+    },
+    "identifier": {
+      "type": "string",
+      "description": "Unique theme identifier",
+      "example": "com.apple.themes.white"
+    },
+    "category": {
+      "type": "string",
+      "description": "Theme category (Basic, Bold, etc.)",
+      "example": "Basic"
+    },
+    "colorScheme": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Primary colors used in theme"
+    },
+    "fontFamily": {
+      "type": "string",
+      "description": "Default font family for the theme",
+      "example": "San Francisco"
+    }
+  }
+}

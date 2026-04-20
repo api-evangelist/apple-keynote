@@ -1,0 +1,620 @@
+openapi: 3.0.3
+info:
+  title: Apple Keynote iCloud API
+  description: >-
+    The Apple Keynote iCloud API provides programmatic access to Keynote presentations
+    stored in iCloud. It enables creating, reading, updating, and exporting presentations,
+    slides, and their elements. This specification is generated from Apple documentation
+    and iCloud web interface analysis.
+  version: 1.0.0
+  contact:
+    name: Apple Developer Support
+    url: https://developer.apple.com/contact/
+  x-generated-from: documentation
+servers:
+  - url: https://p00-keynote.icloud.com
+    description: Apple iCloud Keynote server
+tags:
+  - name: Presentations
+    description: Keynote presentation document management
+  - name: Slides
+    description: Slide operations within a presentation
+  - name: Themes
+    description: Presentation themes and templates
+  - name: Export
+    description: Exporting presentations to various formats
+paths:
+  /presentations:
+    get:
+      operationId: listPresentations
+      summary: Apple Keynote List Presentations
+      description: Returns a list of Keynote presentations in the user's iCloud account.
+      tags:
+        - Presentations
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of presentations to return
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 200
+            default: 50
+          example: 50
+        - name: offset
+          in: query
+          description: Number of presentations to skip for pagination
+          required: false
+          schema:
+            type: integer
+            minimum: 0
+            default: 0
+          example: 0
+      responses:
+        '200':
+          description: List of presentations returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PresentationList'
+              examples:
+                ListPresentations200Example:
+                  summary: Default listPresentations 200 response
+                  x-microcks-default: true
+                  value:
+                    presentations:
+                      - id: pres-001
+                        title: Q4 Business Review
+                        slideCount: 24
+                        modifiedDate: '2025-03-15T14:30:00Z'
+                    total: 1
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: createPresentation
+      summary: Apple Keynote Create Presentation
+      description: Creates a new Keynote presentation in iCloud.
+      tags:
+        - Presentations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePresentationRequest'
+            examples:
+              CreatePresentationRequestExample:
+                summary: Default createPresentation request
+                x-microcks-default: true
+                value:
+                  title: My New Presentation
+                  theme: White
+      responses:
+        '201':
+          description: Presentation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Presentation'
+              examples:
+                CreatePresentation201Example:
+                  summary: Default createPresentation 201 response
+                  x-microcks-default: true
+                  value:
+                    id: pres-002
+                    title: My New Presentation
+                    slideCount: 1
+                    createdDate: '2025-03-15T14:30:00Z'
+                    modifiedDate: '2025-03-15T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /presentations/{presentationId}:
+    get:
+      operationId: getPresentation
+      summary: Apple Keynote Get Presentation
+      description: Returns metadata and content for a specific Keynote presentation.
+      tags:
+        - Presentations
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+      responses:
+        '200':
+          description: Presentation returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Presentation'
+              examples:
+                GetPresentation200Example:
+                  summary: Default getPresentation 200 response
+                  x-microcks-default: true
+                  value:
+                    id: pres-001
+                    title: Q4 Business Review
+                    slideCount: 24
+                    createdDate: '2025-01-10T09:00:00Z'
+                    modifiedDate: '2025-03-15T14:30:00Z'
+        '404':
+          description: Presentation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      operationId: updatePresentation
+      summary: Apple Keynote Update Presentation
+      description: Updates the metadata of a Keynote presentation such as its title.
+      tags:
+        - Presentations
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePresentationRequest'
+      responses:
+        '200':
+          description: Presentation updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Presentation'
+              examples:
+                UpdatePresentation200Example:
+                  summary: Default updatePresentation 200 response
+                  x-microcks-default: true
+                  value:
+                    id: pres-001
+                    title: Q4 Business Review - Final
+                    slideCount: 24
+                    modifiedDate: '2025-03-16T10:00:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deletePresentation
+      summary: Apple Keynote Delete Presentation
+      description: Deletes a Keynote presentation from iCloud.
+      tags:
+        - Presentations
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+      responses:
+        '204':
+          description: Presentation deleted successfully
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /presentations/{presentationId}/slides:
+    get:
+      operationId: listSlides
+      summary: Apple Keynote List Slides
+      description: Returns all slides in a Keynote presentation.
+      tags:
+        - Slides
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+      responses:
+        '200':
+          description: Slides returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SlideList'
+              examples:
+                ListSlides200Example:
+                  summary: Default listSlides 200 response
+                  x-microcks-default: true
+                  value:
+                    slides:
+                      - slideNumber: 1
+                        title: Q4 Business Review
+                        layout: Title - Center
+                        skipped: false
+                    total: 24
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      operationId: addSlide
+      summary: Apple Keynote Add Slide
+      description: Adds a new slide to a Keynote presentation at a specified position.
+      tags:
+        - Slides
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddSlideRequest'
+      responses:
+        '201':
+          description: Slide added successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Slide'
+              examples:
+                AddSlide201Example:
+                  summary: Default addSlide 201 response
+                  x-microcks-default: true
+                  value:
+                    slideNumber: 25
+                    title: New Slide
+                    layout: Title & Bullets
+                    skipped: false
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /presentations/{presentationId}/slides/{slideNumber}:
+    get:
+      operationId: getSlide
+      summary: Apple Keynote Get Slide
+      description: Returns the content and properties of a specific slide.
+      tags:
+        - Slides
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+        - $ref: '#/components/parameters/SlideNumber'
+      responses:
+        '200':
+          description: Slide returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Slide'
+              examples:
+                GetSlide200Example:
+                  summary: Default getSlide 200 response
+                  x-microcks-default: true
+                  value:
+                    slideNumber: 1
+                    title: Q4 Business Review
+                    layout: Title - Center
+                    skipped: false
+                    notes: Welcome everyone to the Q4 review.
+        '404':
+          description: Slide not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    delete:
+      operationId: deleteSlide
+      summary: Apple Keynote Delete Slide
+      description: Removes a slide from a presentation.
+      tags:
+        - Slides
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+        - $ref: '#/components/parameters/SlideNumber'
+      responses:
+        '204':
+          description: Slide deleted successfully
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /presentations/{presentationId}/export:
+    post:
+      operationId: exportPresentation
+      summary: Apple Keynote Export Presentation
+      description: Exports a Keynote presentation to a specified format such as PDF, PowerPoint, or images.
+      tags:
+        - Export
+      parameters:
+        - $ref: '#/components/parameters/PresentationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+            examples:
+              ExportRequestExample:
+                summary: Default exportPresentation request
+                x-microcks-default: true
+                value:
+                  format: pdf
+                  includeNotes: true
+      responses:
+        '200':
+          description: Export completed, returns download URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+              examples:
+                ExportPresentation200Example:
+                  summary: Default exportPresentation 200 response
+                  x-microcks-default: true
+                  value:
+                    downloadUrl: https://keynote.icloud.com/download/pres-001-export.pdf
+                    format: pdf
+                    expiresAt: '2025-03-16T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /themes:
+    get:
+      operationId: listThemes
+      summary: Apple Keynote List Themes
+      description: Returns the list of available Keynote themes and templates.
+      tags:
+        - Themes
+      responses:
+        '200':
+          description: Themes returned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ThemeList'
+              examples:
+                ListThemes200Example:
+                  summary: Default listThemes 200 response
+                  x-microcks-default: true
+                  value:
+                    themes:
+                      - name: White
+                        identifier: com.apple.themes.white
+                        category: Basic
+                      - name: Black
+                        identifier: com.apple.themes.black
+                        category: Basic
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  parameters:
+    PresentationId:
+      name: presentationId
+      in: path
+      required: true
+      description: The unique identifier of the presentation
+      schema:
+        type: string
+      example: pres-001
+    SlideNumber:
+      name: slideNumber
+      in: path
+      required: true
+      description: The 1-based slide number within the presentation
+      schema:
+        type: integer
+        minimum: 1
+      example: 1
+  schemas:
+    Presentation:
+      title: Presentation
+      description: A Keynote presentation document stored in iCloud
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the presentation
+          example: pres-001
+        title:
+          type: string
+          description: The title of the presentation
+          example: Q4 Business Review
+        slideCount:
+          type: integer
+          description: Total number of slides in the presentation
+          example: 24
+        theme:
+          type: string
+          description: The theme applied to the presentation
+          example: White
+        createdDate:
+          type: string
+          format: date-time
+          description: When the presentation was created
+          example: '2025-01-10T09:00:00Z'
+        modifiedDate:
+          type: string
+          format: date-time
+          description: When the presentation was last modified
+          example: '2025-03-15T14:30:00Z'
+        author:
+          type: string
+          description: The author of the presentation
+          example: jsmith@example.com
+    PresentationList:
+      title: PresentationList
+      description: A paginated list of Keynote presentations
+      type: object
+      properties:
+        presentations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Presentation'
+        total:
+          type: integer
+          description: Total number of presentations
+          example: 1
+        offset:
+          type: integer
+          description: Current pagination offset
+          example: 0
+    CreatePresentationRequest:
+      title: CreatePresentationRequest
+      description: Request body for creating a new Keynote presentation
+      type: object
+      required:
+        - title
+      properties:
+        title:
+          type: string
+          description: The title for the new presentation
+          example: My New Presentation
+        theme:
+          type: string
+          description: The theme to apply to the new presentation
+          example: White
+    UpdatePresentationRequest:
+      title: UpdatePresentationRequest
+      description: Request body for updating a Keynote presentation
+      type: object
+      properties:
+        title:
+          type: string
+          description: New title for the presentation
+          example: Q4 Business Review - Final
+    Slide:
+      title: Slide
+      description: A single slide within a Keynote presentation
+      type: object
+      properties:
+        slideNumber:
+          type: integer
+          description: The 1-based position of the slide
+          example: 1
+        title:
+          type: string
+          description: The title displayed on the slide
+          example: Q4 Business Review
+        layout:
+          type: string
+          description: The slide layout name
+          example: Title - Center
+        skipped:
+          type: boolean
+          description: Whether this slide is skipped during playback
+          example: false
+        notes:
+          type: string
+          description: Presenter notes for this slide
+          example: Welcome everyone to the Q4 review.
+    SlideList:
+      title: SlideList
+      description: A list of slides in a presentation
+      type: object
+      properties:
+        slides:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slide'
+        total:
+          type: integer
+          description: Total number of slides
+          example: 24
+    AddSlideRequest:
+      title: AddSlideRequest
+      description: Request body for adding a new slide to a presentation
+      type: object
+      properties:
+        layout:
+          type: string
+          description: The slide layout to use
+          example: Title & Bullets
+        position:
+          type: integer
+          description: Where to insert the slide (1-based). Defaults to end.
+          example: 5
+        title:
+          type: string
+          description: Initial title text for the slide
+          example: New Slide
+    ExportRequest:
+      title: ExportRequest
+      description: Request body for exporting a presentation to a different format
+      type: object
+      required:
+        - format
+      properties:
+        format:
+          type: string
+          enum:
+            - pdf
+            - pptx
+            - key
+            - html
+            - images
+          description: The export format
+          example: pdf
+        includeNotes:
+          type: boolean
+          description: Whether to include presenter notes in the export
+          example: true
+        slideRange:
+          type: string
+          description: Slide range to export (e.g. "1-5,8"). Defaults to all.
+          example: 1-24
+    ExportResponse:
+      title: ExportResponse
+      description: Response from a presentation export operation
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the exported file
+          example: https://keynote.icloud.com/download/pres-001-export.pdf
+        format:
+          type: string
+          description: The format of the exported file
+          example: pdf
+        expiresAt:
+          type: string
+          format: date-time
+          description: When the download URL expires
+          example: '2025-03-16T14:30:00Z'
+    Theme:
+      title: Theme
+      description: An Apple Keynote theme for styling presentations
+      type: object
+      properties:
+        name:
+          type: string
+          description: The display name of the theme
+          example: White
+        identifier:
+          type: string
+          description: The unique theme identifier
+          example: com.apple.themes.white
+        category:
+          type: string
+          description: The theme category
+          example: Basic
+        colorScheme:
+          type: array
+          items:
+            type: string
+          description: Primary colors in the theme
+          example:
+            - '#FFFFFF'
+            - '#000000'
+    ThemeList:
+      title: ThemeList
+      description: A list of available Keynote themes
+      type: object
+      properties:
+        themes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Theme'
+    ErrorResponse:
+      title: ErrorResponse
+      description: API error response
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error description
+          example: The requested presentation was not found.

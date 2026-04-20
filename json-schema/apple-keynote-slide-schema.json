@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/apple-keynote/refs/heads/main/json-schema/apple-keynote-slide-schema.json",
+  "title": "Slide",
+  "description": "A single slide within an Apple Keynote presentation",
+  "type": "object",
+  "properties": {
+    "slideNumber": {
+      "type": "integer",
+      "description": "The 1-based position of the slide",
+      "example": 1
+    },
+    "title": {
+      "type": "string",
+      "description": "The title displayed on the slide",
+      "example": "Q4 Business Review"
+    },
+    "layout": {
+      "type": "string",
+      "description": "The slide layout name",
+      "example": "Title - Center"
+    },
+    "skipped": {
+      "type": "boolean",
+      "description": "Whether this slide is skipped during playback",
+      "example": false
+    },
+    "notes": {
+      "type": "string",
+      "description": "Presenter notes for the slide",
+      "example": "Welcome to the review."
+    },
+    "backgroundColor": {
+      "type": "string",
+      "description": "Slide background color in hex",
+      "example": "#FFFFFF"
+    }
+  }
+}

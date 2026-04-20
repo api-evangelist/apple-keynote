@@ -1,0 +1,237 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: Apple Keynote
+  description: >-
+    Unified vocabulary for Apple Keynote presentation software covering operational
+    API dimensions (iCloud REST API, AppleScript, Shortcuts) and capability dimensions
+    (presentation automation workflows, MCP tools, content creator personas).
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+operational:
+  apis:
+    - name: Keynote iCloud API
+      namespace: keynote-icloud
+      version: "1.0.0"
+      baseUrl: "https://p00-keynote.icloud.com"
+      status: active
+    - name: Keynote AppleScript API
+      namespace: keynote-applescript
+      version: "1.0"
+      baseUrl: local
+      status: active
+    - name: Keynote JavaScript for Automation
+      namespace: keynote-jxa
+      version: "1.0"
+      baseUrl: local
+      status: active
+    - name: Keynote Shortcuts Actions
+      namespace: keynote-shortcuts
+      version: "1.0"
+      baseUrl: local
+      status: active
+
+  resources:
+    - name: presentations
+      description: Keynote presentation documents
+      api: Keynote iCloud API
+      actions:
+        - list
+        - create
+        - get
+        - update
+        - delete
+    - name: slides
+      description: Individual slides within a presentation
+      api: Keynote iCloud API
+      actions:
+        - list
+        - add
+        - get
+        - delete
+    - name: themes
+      description: Presentation visual themes and templates
+      api: Keynote iCloud API
+      actions:
+        - list
+    - name: export
+      description: Presentation export to various formats
+      api: Keynote iCloud API
+      actions:
+        - create
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+    - name: create
+      httpMethod: POST
+      pattern: write
+    - name: get
+      httpMethod: GET
+      pattern: read
+    - name: update
+      httpMethod: PUT
+      pattern: write
+    - name: delete
+      httpMethod: DELETE
+      pattern: destructive
+    - name: add
+      httpMethod: POST
+      pattern: write
+    - name: export
+      httpMethod: POST
+      pattern: read
+
+  schemas:
+    core:
+      - name: Presentation
+        description: A Keynote presentation document with slides, theme, and metadata
+      - name: Slide
+        description: A single slide with layout, title, notes, and visual elements
+      - name: Theme
+        description: A visual theme defining colors, fonts, and layout styles
+    export:
+      - name: ExportRequest
+        description: Parameters for exporting a presentation to PDF, PPTX, or other formats
+
+  parameters:
+    identifiers:
+      - name: presentationId
+        description: Unique identifier for a Keynote presentation
+      - name: slideNumber
+        description: 1-based slide position within a presentation
+    pagination:
+      - name: limit
+        description: Maximum number of results to return
+      - name: offset
+        description: Number of results to skip
+
+  enums:
+    exportFormats:
+      - pdf
+      - pptx
+      - key
+      - html
+      - images
+    slideLayouts:
+      - Title - Center
+      - Title - Top
+      - Title & Subtitle
+      - Title & Bullets
+      - Bullets
+      - Photo
+      - Quote
+      - Blank
+      - Statement
+      - Big Number
+    chartTypes:
+      - bar
+      - column
+      - line
+      - area
+      - pie
+      - donut
+      - scatter
+    animationTriggers:
+      - onClick
+      - withPrevious
+      - afterPrevious
+
+  authentication:
+    schemes:
+      - type: bearer
+        description: iCloud authentication token for API access
+
+capability:
+  workflows:
+    - name: Presentation Automation
+      file: capabilities/presentation-automation.yaml
+      description: End-to-end Keynote presentation creation and management via iCloud
+      apis:
+        - Keynote iCloud API
+      toolCount: 6
+      personas:
+        - Content Creator
+        - Marketing Professional
+
+  personas:
+    - id: content-creator
+      name: Content Creator
+      description: Individual creating presentations for training, education, or personal use
+      workflows:
+        - Presentation Automation
+
+    - id: marketing-professional
+      name: Marketing Professional
+      description: Marketing team member creating brand presentations, pitch decks, and sales materials
+      workflows:
+        - Presentation Automation
+
+  domains:
+    - name: Presentation Management
+      description: Creating, organizing, and managing Keynote presentation documents
+      resources:
+        - presentations
+        - slides
+    - name: Visual Design
+      description: Themes, layouts, and visual styling of presentations
+      resources:
+        - themes
+    - name: Content Export
+      description: Converting and sharing presentations in different formats
+      resources:
+        - export
+
+  namespaces:
+    - name: keynote-icloud
+      type: consumed
+      baseUri: "https://p00-keynote.icloud.com"
+    - name: keynote-automation-api
+      type: rest-exposed
+      port: 8080
+    - name: keynote-automation-mcp
+      type: mcp-exposed
+      port: 9090
+
+  binds:
+    - name: ICLOUD_AUTH_TOKEN
+      description: iCloud authentication bearer token
+      workflows:
+        - Presentation Automation
+
+crossReference:
+  - resource: presentations
+    operations:
+      - listPresentations
+      - createPresentation
+      - getPresentation
+      - updatePresentation
+      - deletePresentation
+    workflows:
+      - Presentation Automation
+    personas:
+      - Content Creator
+      - Marketing Professional
+
+  - resource: slides
+    operations:
+      - listSlides
+      - addSlide
+      - getSlide
+      - deleteSlide
+    workflows:
+      - Presentation Automation
+    personas:
+      - Content Creator
+      - Marketing Professional
+
+  - resource: export
+    operations:
+      - exportPresentation
+    workflows:
+      - Presentation Automation
+    personas:
+      - Content Creator
+      - Marketing Professional

@@ -1,0 +1,16 @@
+{
+  "id": "pres-001",
+  "title": "Q4 Business Review",
+  "slideCount": 24,
+  "theme": "White",
+  "createdDate": "2025-01-10T09:00:00Z",
+  "modifiedDate": "2025-03-15T14:30:00Z",
+  "author": "jsmith@example.com",
+  "slides": [
+    {
+      "slideNumber": 1,
+      "title": "Q4 Business Review",
+      "layout": "Title - Center"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "name": "White",
+  "identifier": "com.apple.themes.white",
+  "category": "Basic",
+  "colorScheme": [
+    "#FFFFFF",
+    "#000000",
+    "#0071E3"
+  ],
+  "fontFamily": "San Francisco"
+}

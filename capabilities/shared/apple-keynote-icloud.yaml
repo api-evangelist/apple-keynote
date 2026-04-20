@@ -1,0 +1,256 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: Apple Keynote iCloud API
+  description: >-
+    Apple Keynote iCloud API providing programmatic access to presentations
+    stored in iCloud. Covers presentation lifecycle, slide management, theme
+    selection, and multi-format export.
+  tags:
+    - Apple
+    - Keynote
+    - Presentations
+    - iCloud
+    - Productivity
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      ICLOUD_AUTH_TOKEN: ICLOUD_AUTH_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: keynote-icloud
+      baseUri: "https://p00-keynote.icloud.com"
+      description: Apple Keynote iCloud presentation management
+      authentication:
+        type: bearer
+        token: "{{ICLOUD_AUTH_TOKEN}}"
+      resources:
+        - name: presentations
+          path: /presentations
+          description: Keynote presentation document management
+          operations:
+            - name: list-presentations
+              method: GET
+              description: Returns a list of Keynote presentations in iCloud
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-presentation
+              method: POST
+              description: Creates a new Keynote presentation in iCloud
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  title: "{{tools.title}}"
+                  theme: "{{tools.theme}}"
+
+        - name: presentation
+          path: /presentations/{presentationId}
+          description: Single presentation operations
+          operations:
+            - name: get-presentation
+              method: GET
+              description: Returns a specific Keynote presentation
+              inputParameters:
+                - name: presentationId
+                  in: path
+                  type: string
+                  required: true
+                  description: The presentation ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-presentation
+              method: DELETE
+              description: Deletes a Keynote presentation from iCloud
+              inputParameters:
+                - name: presentationId
+                  in: path
+                  type: string
+                  required: true
+                  description: The presentation ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: slides
+          path: /presentations/{presentationId}/slides
+          description: Slide management within presentations
+          operations:
+            - name: list-slides
+              method: GET
+              description: Returns all slides in a presentation
+              inputParameters:
+                - name: presentationId
+                  in: path
+                  type: string
+                  required: true
+                  description: The presentation ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: add-slide
+              method: POST
+              description: Adds a new slide to a presentation
+              inputParameters:
+                - name: presentationId
+                  in: path
+                  type: string
+                  required: true
+                  description: The presentation ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  layout: "{{tools.layout}}"
+                  position: "{{tools.position}}"
+
+        - name: export
+          path: /presentations/{presentationId}/export
+          description: Presentation export operations
+          operations:
+            - name: export-presentation
+              method: POST
+              description: Exports a presentation to PDF, PPTX, or other formats
+              inputParameters:
+                - name: presentationId
+                  in: path
+                  type: string
+                  required: true
+                  description: The presentation ID
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  format: "{{tools.format}}"
+                  includeNotes: "{{tools.includeNotes}}"
+
+        - name: themes
+          path: /themes
+          description: Available Keynote themes
+          operations:
+            - name: list-themes
+              method: GET
+              description: Returns available Keynote themes and templates
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: keynote-icloud-api
+      resources:
+        - path: /v1/presentations
+          name: presentations
+          description: Keynote presentation management
+          operations:
+            - method: GET
+              name: list-presentations
+              description: List Keynote presentations
+              call: "keynote-icloud.list-presentations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-presentation
+              description: Create a new presentation
+              call: "keynote-icloud.create-presentation"
+              with:
+                title: "rest.title"
+                theme: "rest.theme"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: keynote-icloud-mcp
+      transport: http
+      tools:
+        - name: list-presentations
+          description: Lists Keynote presentations stored in iCloud
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keynote-icloud.list-presentations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-presentation
+          description: Creates a new Keynote presentation with a title and optional theme
+          hints:
+            readOnly: false
+            destructive: false
+          call: "keynote-icloud.create-presentation"
+          with:
+            title: "tools.title"
+            theme: "tools.theme"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: export-presentation
+          description: Exports a Keynote presentation to PDF, PowerPoint, or other formats
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keynote-icloud.export-presentation"
+          with:
+            presentationId: "tools.presentationId"
+            format: "tools.format"
+            includeNotes: "tools.includeNotes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-slides
+          description: Lists all slides in a Keynote presentation
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keynote-icloud.list-slides"
+          with:
+            presentationId: "tools.presentationId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-themes
+          description: Lists available Keynote themes and templates
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "keynote-icloud.list-themes"
+          outputParameters:
+            - type: object
+              mapping: "$."
