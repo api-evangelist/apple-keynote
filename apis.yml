@@ -91,6 +91,8 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.apple.com/documentation/appintents/app-shortcuts
+integrations:
+  - name: Try it free 3
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
@@ -179,3 +181,5 @@ common:
         description: Automate presentation creation and export workflows on iOS and macOS
       - name: Spotlight
         description: Index and search Keynote presentation content via macOS Spotlight
+  - type: Integrations
+    url: https://www.apple.com/apps/
