@@ -1,0 +1,159 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apple Keynote iCloud API — Slides
+  description: 'Apple Keynote iCloud API — Slides. 4 operations. Lead operation: Apple Keynote List Slides. Self-contained
+    Naftiko capability covering one Apple Keynote business surface.'
+  tags:
+  - Apple Keynote
+  - Slides
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APPLE_KEYNOTE_API_KEY: APPLE_KEYNOTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: icloud-slides
+    baseUri: https://p00-keynote.icloud.com
+    description: Apple Keynote iCloud API — Slides business capability. Self-contained, no shared references.
+    resources:
+    - name: presentations-presentationId-slides
+      path: /presentations/{presentationId}/slides
+      operations:
+      - name: listslides
+        method: GET
+        description: Apple Keynote List Slides
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: addslide
+        method: POST
+        description: Apple Keynote Add Slide
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: presentations-presentationId-slides-slideNumber
+      path: /presentations/{presentationId}/slides/{slideNumber}
+      operations:
+      - name: getslide
+        method: GET
+        description: Apple Keynote Get Slide
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteslide
+        method: DELETE
+        description: Apple Keynote Delete Slide
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: icloud-slides-rest
+    port: 8080
+    description: REST adapter for Apple Keynote iCloud API — Slides. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/presentations/{presentationid}/slides
+      name: presentations-presentationid-slides
+      description: REST surface for presentations-presentationId-slides.
+      operations:
+      - method: GET
+        name: listslides
+        description: Apple Keynote List Slides
+        call: icloud-slides.listslides
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: addslide
+        description: Apple Keynote Add Slide
+        call: icloud-slides.addslide
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/presentations/{presentationid}/slides/{slidenumber}
+      name: presentations-presentationid-slides-slidenumber
+      description: REST surface for presentations-presentationId-slides-slideNumber.
+      operations:
+      - method: GET
+        name: getslide
+        description: Apple Keynote Get Slide
+        call: icloud-slides.getslide
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteslide
+        description: Apple Keynote Delete Slide
+        call: icloud-slides.deleteslide
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: icloud-slides-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apple Keynote iCloud API — Slides. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apple-keynote-list-slides
+      description: Apple Keynote List Slides
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: icloud-slides.listslides
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-add-slide
+      description: Apple Keynote Add Slide
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: icloud-slides.addslide
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-get-slide
+      description: Apple Keynote Get Slide
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: icloud-slides.getslide
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-delete-slide
+      description: Apple Keynote Delete Slide
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: icloud-slides.deleteslide
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,209 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apple Keynote iCloud API — Presentations
+  description: 'Apple Keynote iCloud API — Presentations. 5 operations. Lead operation: Apple Keynote List Presentations.
+    Self-contained Naftiko capability covering one Apple Keynote business surface.'
+  tags:
+  - Apple Keynote
+  - Presentations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APPLE_KEYNOTE_API_KEY: APPLE_KEYNOTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: icloud-presentations
+    baseUri: https://p00-keynote.icloud.com
+    description: Apple Keynote iCloud API — Presentations business capability. Self-contained, no shared references.
+    resources:
+    - name: presentations
+      path: /presentations
+      operations:
+      - name: listpresentations
+        method: GET
+        description: Apple Keynote List Presentations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of presentations to return
+        - name: offset
+          in: query
+          type: integer
+          description: Number of presentations to skip for pagination
+      - name: createpresentation
+        method: POST
+        description: Apple Keynote Create Presentation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: presentations-presentationId
+      path: /presentations/{presentationId}
+      operations:
+      - name: getpresentation
+        method: GET
+        description: Apple Keynote Get Presentation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatepresentation
+        method: PUT
+        description: Apple Keynote Update Presentation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletepresentation
+        method: DELETE
+        description: Apple Keynote Delete Presentation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: icloud-presentations-rest
+    port: 8080
+    description: REST adapter for Apple Keynote iCloud API — Presentations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/presentations
+      name: presentations
+      description: REST surface for presentations.
+      operations:
+      - method: GET
+        name: listpresentations
+        description: Apple Keynote List Presentations
+        call: icloud-presentations.listpresentations
+        with:
+          limit: rest.limit
+          offset: rest.offset
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createpresentation
+        description: Apple Keynote Create Presentation
+        call: icloud-presentations.createpresentation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/presentations/{presentationid}
+      name: presentations-presentationid
+      description: REST surface for presentations-presentationId.
+      operations:
+      - method: GET
+        name: getpresentation
+        description: Apple Keynote Get Presentation
+        call: icloud-presentations.getpresentation
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatepresentation
+        description: Apple Keynote Update Presentation
+        call: icloud-presentations.updatepresentation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletepresentation
+        description: Apple Keynote Delete Presentation
+        call: icloud-presentations.deletepresentation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: icloud-presentations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apple Keynote iCloud API — Presentations. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: apple-keynote-list-presentations
+      description: Apple Keynote List Presentations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: icloud-presentations.listpresentations
+      with:
+        limit: tools.limit
+        offset: tools.offset
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-create-presentation
+      description: Apple Keynote Create Presentation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: icloud-presentations.createpresentation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-get-presentation
+      description: Apple Keynote Get Presentation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: icloud-presentations.getpresentation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-update-presentation
+      description: Apple Keynote Update Presentation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: icloud-presentations.updatepresentation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: apple-keynote-delete-presentation
+      description: Apple Keynote Delete Presentation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: icloud-presentations.deletepresentation
+      outputParameters:
+      - type: object
+        mapping: $.

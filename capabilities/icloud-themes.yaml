@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apple Keynote iCloud API — Themes
+  description: 'Apple Keynote iCloud API — Themes. 1 operations. Lead operation: Apple Keynote List Themes. Self-contained
+    Naftiko capability covering one Apple Keynote business surface.'
+  tags:
+  - Apple Keynote
+  - Themes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    APPLE_KEYNOTE_API_KEY: APPLE_KEYNOTE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: icloud-themes
+    baseUri: https://p00-keynote.icloud.com
+    description: Apple Keynote iCloud API — Themes business capability. Self-contained, no shared references.
+    resources:
+    - name: themes
+      path: /themes
+      operations:
+      - name: listthemes
+        method: GET
+        description: Apple Keynote List Themes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: icloud-themes-rest
+    port: 8080
+    description: REST adapter for Apple Keynote iCloud API — Themes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/themes
+      name: themes
+      description: REST surface for themes.
+      operations:
+      - method: GET
+        name: listthemes
+        description: Apple Keynote List Themes
+        call: icloud-themes.listthemes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: icloud-themes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apple Keynote iCloud API — Themes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: apple-keynote-list-themes
+      description: Apple Keynote List Themes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: icloud-themes.listthemes
+      outputParameters:
+      - type: object
+        mapping: $.
