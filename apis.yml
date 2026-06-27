@@ -38,13 +38,13 @@ apis:
   - type: JSONSchema
     url: json-schema/apple-keynote-export-request-schema.json
     title: Export Request Schema
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/icloud-export.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/icloud-presentations.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/icloud-slides.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/icloud-themes.yaml
   contact:
   - FN: Apple Developer Support
