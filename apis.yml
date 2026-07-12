@@ -102,6 +102,10 @@ tags:
 - Productivity
 - Slides
 common:
+- type: VulnerabilityDisclosure
+  url: security/apple-keynote-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/apple-keynote-domain-security.yml
 - type: Portal
   url: https://developer.apple.com/
 - type: Documentation
