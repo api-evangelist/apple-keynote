@@ -1,0 +1,111 @@
+openapi: 3.0.3
+info:
+  title: Apple Keynote iCloud Export API
+  description: The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.
+  version: 1.0.0
+  contact:
+    name: Apple Developer Support
+    url: https://developer.apple.com/contact/
+  x-generated-from: documentation
+servers:
+- url: https://p00-keynote.icloud.com
+  description: Apple iCloud Keynote server
+tags:
+- name: Export
+  description: Exporting presentations to various formats
+paths:
+  /presentations/{presentationId}/export:
+    post:
+      operationId: exportPresentation
+      summary: Apple Keynote Export Presentation
+      description: Exports a Keynote presentation to a specified format such as PDF, PowerPoint, or images.
+      tags:
+      - Export
+      parameters:
+      - $ref: '#/components/parameters/PresentationId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExportRequest'
+            examples:
+              ExportRequestExample:
+                summary: Default exportPresentation request
+                x-microcks-default: true
+                value:
+                  format: pdf
+                  includeNotes: true
+      responses:
+        '200':
+          description: Export completed, returns download URL
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+              examples:
+                ExportPresentation200Example:
+                  summary: Default exportPresentation 200 response
+                  x-microcks-default: true
+                  value:
+                    downloadUrl: https://keynote.icloud.com/download/pres-001-export.pdf
+                    format: pdf
+                    expiresAt: '2025-03-16T14:30:00Z'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ExportResponse:
+      title: ExportResponse
+      description: Response from a presentation export operation
+      type: object
+      properties:
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download the exported file
+          example: https://keynote.icloud.com/download/pres-001-export.pdf
+        format:
+          type: string
+          description: The format of the exported file
+          example: pdf
+        expiresAt:
+          type: string
+          format: date-time
+          description: When the download URL expires
+          example: '2025-03-16T14:30:00Z'
+    ExportRequest:
+      title: ExportRequest
+      description: Request body for exporting a presentation to a different format
+      type: object
+      required:
+      - format
+      properties:
+        format:
+          type: string
+          enum:
+          - pdf
+          - pptx
+          - key
+          - html
+          - images
+          description: The export format
+          example: pdf
+        includeNotes:
+          type: boolean
+          description: Whether to include presenter notes in the export
+          example: true
+        slideRange:
+          type: string
+          description: Slide range to export (e.g. "1-5,8"). Defaults to all.
+          example: 1-24
+  parameters:
+    PresentationId:
+      name: presentationId
+      in: path
+      required: true
+      description: The unique identifier of the presentation
+      schema:
+        type: string
+      example: pres-001
