@@ -1,0 +1,20 @@
+{
+  "provider": "apple-keynote",
+  "sources": [
+    "apple-keynote-export-api-openapi.yml",
+    "apple-keynote-presentations-api-openapi.yml",
+    "apple-keynote-slides-api-openapi.yml",
+    "apple-keynote-themes-api-openapi.yml"
+  ],
+  "outputs": [
+    "apple-keynote-export-api-openapi.yml",
+    "apple-keynote-presentations-api-openapi.yml",
+    "apple-keynote-slides-api-openapi.yml",
+    "apple-keynote-themes-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
