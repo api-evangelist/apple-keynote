@@ -87,14 +87,6 @@ apis:
     url: json-schema/apple-keynote-theme-schema.json
   - type: JSONSchema
     url: json-schema/apple-keynote-export-request-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-export.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-presentations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-slides.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-themes.yaml
 - aid: apple-keynote:apple-keynote-presentations-api
   name: Apple Keynote Presentations API
   description: Keynote presentation document management
@@ -115,14 +107,6 @@ apis:
     url: json-schema/apple-keynote-theme-schema.json
   - type: JSONSchema
     url: json-schema/apple-keynote-export-request-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-export.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-presentations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-slides.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-themes.yaml
 - aid: apple-keynote:apple-keynote-slides-api
   name: Apple Keynote Slides API
   description: Slide operations within a presentation
@@ -143,14 +127,6 @@ apis:
     url: json-schema/apple-keynote-theme-schema.json
   - type: JSONSchema
     url: json-schema/apple-keynote-export-request-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-export.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-presentations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-slides.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-themes.yaml
 - aid: apple-keynote:apple-keynote-themes-api
   name: Apple Keynote Themes API
   description: Presentation themes and templates
@@ -171,14 +147,6 @@ apis:
     url: json-schema/apple-keynote-theme-schema.json
   - type: JSONSchema
     url: json-schema/apple-keynote-export-request-schema.json
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-export.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-presentations.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-slides.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/icloud-themes.yaml
 integrations:
 - name: Try it free 3
 maintainers:
