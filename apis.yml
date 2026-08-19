@@ -19,7 +19,7 @@ image: https://www.apple.com/v/keynote/o/images/overview/keynote_icon__e6u8i7ju7
 url: https://www.apple.com/keynote/
 created: '2024-01-01'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 apis:
 - name: Keynote AppleScript API
   description: >-
