@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apple Keynote iCloud Export Presentations API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Presentations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apple Keynote List Presentations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://p00-keynote.icloud.com/presentations",
+            "params": [
+              {
+                "name": "limit",
+                "value": "50",
+                "type": "query",
+                "description": "Maximum number of presentations to return"
+              },
+              {
+                "name": "offset",
+                "value": "0",
+                "type": "query",
+                "description": "Number of presentations to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Returns a list of Keynote presentations in the user's iCloud account."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Create Presentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://p00-keynote.icloud.com/presentations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new Keynote presentation in iCloud."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Get Presentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              }
+            ]
+          },
+          "docs": "Returns metadata and content for a specific Keynote presentation."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Update Presentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the metadata of a Keynote presentation such as its title."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Delete Presentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              }
+            ]
+          },
+          "docs": "Deletes a Keynote presentation from iCloud."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

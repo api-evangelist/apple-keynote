@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "54ac998d-3166-4d15-be3f-b69c5cd2f64f",
+      "name": "Slides",
+      "description": {
+        "content": "Slide operations within a presentation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79543049-d10a-4d87-832c-db5dbcc160f1",
+          "name": "Apple Keynote List Slides",
+          "request": {
+            "name": "Apple Keynote List Slides",
+            "description": {
+              "content": "Returns all slides in a Keynote presentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "presentations",
+                ":presentationId",
+                "slides"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "presentationId",
+                  "description": "(Required) The unique identifier of the presentation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28a1ab45-6345-49c9-a98c-2dfcedafd65d",
+              "name": "Slides returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "presentations",
+                    ":presentationId",
+                    "slides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "presentationId",
+                      "description": "(Required) The unique identifier of the presentation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slides\": [\n    {\n      \"slideNumber\": 1,\n      \"title\": \"Q4 Business Review\",\n      \"layout\": \"Title - Center\",\n      \"skipped\": false\n    }\n  ],\n  \"total\": 24\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be9abf65-3cc8-4025-8354-453ba25eb870",
+          "name": "Apple Keynote Add Slide",
+          "request": {
+            "name": "Apple Keynote Add Slide",
+            "description": {
+              "content": "Adds a new slide to a Keynote presentation at a specified position.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "presentations",
+                ":presentationId",
+                "slides"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "presentationId",
+                  "description": "(Required) The unique identifier of the presentation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"layout\": \"<string>\",\n  \"position\": \"<integer>\",\n  \"title\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3524d671-07c3-4547-94ab-81395bbadded",
+              "name": "Slide added successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "presentations",
+                    ":presentationId",
+                    "slides"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "presentationId",
+                      "description": "(Required) The unique identifier of the presentation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"layout\": \"Title & Bullets\",\n  \"position\": 5,\n  \"title\": \"New Slide\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slideNumber\": 25,\n  \"title\": \"New Slide\",\n  \"layout\": \"Title & Bullets\",\n  \"skipped\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35d92961-dd28-41ed-a391-e992360cc1fd",
+          "name": "Apple Keynote Get Slide",
+          "request": {
+            "name": "Apple Keynote Get Slide",
+            "description": {
+              "content": "Returns the content and properties of a specific slide.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "presentations",
+                ":presentationId",
+                "slides",
+                ":slideNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "presentationId",
+                  "description": "(Required) The unique identifier of the presentation"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "slideNumber",
+                  "description": "(Required) The 1-based slide number within the presentation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f0e35904-0c71-429d-815f-423bfaf85d96",
+              "name": "Slide returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "presentations",
+                    ":presentationId",
+                    "slides",
+                    ":slideNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "presentationId",
+                      "description": "(Required) The unique identifier of the presentation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "slideNumber",
+                      "description": "(Required) The 1-based slide number within the presentation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slideNumber\": 1,\n  \"title\": \"Q4 Business Review\",\n  \"layout\": \"Title - Center\",\n  \"skipped\": false,\n  \"notes\": \"Welcome everyone to the Q4 review.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c85f6ec4-ae62-4e9d-8829-d0168f037134",
+              "name": "Slide not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "presentations",
+                    ":presentationId",
+                    "slides",
+                    ":slideNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "presentationId",
+                      "description": "(Required) The unique identifier of the presentation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "slideNumber",
+                      "description": "(Required) The 1-based slide number within the presentation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested presentation was not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54dd055d-8df9-4d63-b032-17a21c627a19",
+          "name": "Apple Keynote Delete Slide",
+          "request": {
+            "name": "Apple Keynote Delete Slide",
+            "description": {
+              "content": "Removes a slide from a presentation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "presentations",
+                ":presentationId",
+                "slides",
+                ":slideNumber"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "presentationId",
+                  "description": "(Required) The unique identifier of the presentation"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "slideNumber",
+                  "description": "(Required) The 1-based slide number within the presentation"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c97cbd9e-0843-4b97-95df-140a7d99ace4",
+              "name": "Slide deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "presentations",
+                    ":presentationId",
+                    "slides",
+                    ":slideNumber"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "presentationId",
+                      "description": "(Required) The unique identifier of the presentation"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "slideNumber",
+                      "description": "(Required) The 1-based slide number within the presentation"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://p00-keynote.icloud.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "41029f99-f0e8-4d02-92c6-b6b493cd58c7",
+    "name": "Apple Keynote iCloud Export Slides API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

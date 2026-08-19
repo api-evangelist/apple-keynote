@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apple Keynote iCloud Export API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apple Keynote Export Presentation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId/export",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exports a Keynote presentation to a specified format such as PDF, PowerPoint, or images."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,102 @@
+{
+  "item": [
+    {
+      "id": "1e6232fc-fc2c-4c9e-ae65-328a52893c33",
+      "name": "Themes",
+      "description": {
+        "content": "Presentation themes and templates",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f96f6527-17c8-4a2d-bb8c-c3958b00c85e",
+          "name": "Apple Keynote List Themes",
+          "request": {
+            "name": "Apple Keynote List Themes",
+            "description": {
+              "content": "Returns the list of available Keynote themes and templates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "themes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bc6f0194-cacb-4096-9997-73626f76a711",
+              "name": "Themes returned successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "themes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"themes\": [\n    {\n      \"name\": \"White\",\n      \"identifier\": \"com.apple.themes.white\",\n      \"category\": \"Basic\"\n    },\n    {\n      \"name\": \"Black\",\n      \"identifier\": \"com.apple.themes.black\",\n      \"category\": \"Basic\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://p00-keynote.icloud.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c1d91151-0edc-470e-9254-5c61c18a7bcf",
+    "name": "Apple Keynote iCloud Export Themes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

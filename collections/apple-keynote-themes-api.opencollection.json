@@ -1,0 +1,29 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apple Keynote iCloud Export Themes API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Themes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apple Keynote List Themes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://p00-keynote.icloud.com/themes"
+          },
+          "docs": "Returns the list of available Keynote themes and templates."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apple Keynote iCloud Export Slides API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Slides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Apple Keynote List Slides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId/slides",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              }
+            ]
+          },
+          "docs": "Returns all slides in a Keynote presentation."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Add Slide",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId/slides",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new slide to a Keynote presentation at a specified position."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Get Slide",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId/slides/:slideNumber",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              },
+              {
+                "name": "slideNumber",
+                "value": "1",
+                "type": "path",
+                "description": "The 1-based slide number within the presentation"
+              }
+            ]
+          },
+          "docs": "Returns the content and properties of a specific slide."
+        },
+        {
+          "info": {
+            "name": "Apple Keynote Delete Slide",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://p00-keynote.icloud.com/presentations/:presentationId/slides/:slideNumber",
+            "params": [
+              {
+                "name": "presentationId",
+                "value": "pres-001",
+                "type": "path",
+                "description": "The unique identifier of the presentation"
+              },
+              {
+                "name": "slideNumber",
+                "value": "1",
+                "type": "path",
+                "description": "The 1-based slide number within the presentation"
+              }
+            ]
+          },
+          "docs": "Removes a slide from a presentation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
