@@ -3,6 +3,18 @@ description: Apple Keynote is a presentation software application developed by A
   suite, available on macOS, iOS, iPadOS, and the web via iCloud. It enables creating visually rich presentations with animations,
   transitions, charts, and real-time collaboration. Keynote supports automation via AppleScript, JavaScript for Automation
   (JXA), and Apple Shortcuts, and provides iCloud-based access for cross-device sync and sharing.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: unknown
