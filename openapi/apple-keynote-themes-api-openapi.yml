@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Apple Keynote iCloud Export Themes API
   description: The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.
