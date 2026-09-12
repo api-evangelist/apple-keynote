@@ -173,6 +173,8 @@ tags:
 - Productivity
 - Slides
 common:
+- type: Website
+  url: https://www.apple.com/
 - type: AgenticAccess
   url: agentic-access/apple-keynote-agentic-access.yml
 - type: VulnerabilityDisclosure
