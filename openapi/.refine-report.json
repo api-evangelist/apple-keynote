@@ -1,10 +1,7 @@
 {
   "provider": "apple-keynote",
   "sources": [
-    "apple-keynote-export-api-openapi.yml",
-    "apple-keynote-presentations-api-openapi.yml",
-    "apple-keynote-slides-api-openapi.yml",
-    "apple-keynote-themes-api-openapi.yml"
+    "_ae-authored/apple-keynote-icloud-openapi.yaml"
   ],
   "outputs": [
     "apple-keynote-export-api-openapi.yml",
@@ -16,11 +13,14 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "apple-keynote-export-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apple-keynote-presentations-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apple-keynote-slides-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "apple-keynote-themes-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "apple-keynote-icloud-openapi.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "apple-keynote-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apple-keynote-presentations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apple-keynote-slides-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "apple-keynote-themes-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
