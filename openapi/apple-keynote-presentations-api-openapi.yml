@@ -185,6 +185,23 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    PresentationList:
+      title: PresentationList
+      description: A paginated list of Keynote presentations
+      type: object
+      properties:
+        presentations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Presentation'
+        total:
+          type: integer
+          description: Total number of presentations
+          example: 1
+        offset:
+          type: integer
+          description: Current pagination offset
+          example: 0
     CreatePresentationRequest:
       title: CreatePresentationRequest
       description: Request body for creating a new Keynote presentation
@@ -200,6 +217,15 @@ components:
           type: string
           description: The theme to apply to the new presentation
           example: White
+    UpdatePresentationRequest:
+      title: UpdatePresentationRequest
+      description: Request body for updating a Keynote presentation
+      type: object
+      properties:
+        title:
+          type: string
+          description: New title for the presentation
+          example: Q4 Business Review - Final
     Presentation:
       title: Presentation
       description: A Keynote presentation document stored in iCloud
@@ -235,32 +261,6 @@ components:
           type: string
           description: The author of the presentation
           example: jsmith@example.com
-    UpdatePresentationRequest:
-      title: UpdatePresentationRequest
-      description: Request body for updating a Keynote presentation
-      type: object
-      properties:
-        title:
-          type: string
-          description: New title for the presentation
-          example: Q4 Business Review - Final
-    PresentationList:
-      title: PresentationList
-      description: A paginated list of Keynote presentations
-      type: object
-      properties:
-        presentations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Presentation'
-        total:
-          type: integer
-          description: Total number of presentations
-          example: 1
-        offset:
-          type: integer
-          description: Current pagination offset
-          example: 0
     ErrorResponse:
       title: ErrorResponse
       description: API error response

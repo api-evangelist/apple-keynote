@@ -129,51 +129,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  parameters:
-    SlideNumber:
-      name: slideNumber
-      in: path
-      required: true
-      description: The 1-based slide number within the presentation
-      schema:
-        type: integer
-        minimum: 1
-      example: 1
-    PresentationId:
-      name: presentationId
-      in: path
-      required: true
-      description: The unique identifier of the presentation
-      schema:
-        type: string
-      example: pres-001
   schemas:
-    SlideList:
-      title: SlideList
-      description: A list of slides in a presentation
-      type: object
-      properties:
-        slides:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slide'
-        total:
-          type: integer
-          description: Total number of slides
-          example: 24
-    ErrorResponse:
-      title: ErrorResponse
-      description: API error response
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: not_found
-        message:
-          type: string
-          description: Human-readable error description
-          example: The requested presentation was not found.
     AddSlideRequest:
       title: AddSlideRequest
       description: Request body for adding a new slide to a presentation
@@ -191,6 +147,19 @@ components:
           type: string
           description: Initial title text for the slide
           example: New Slide
+    SlideList:
+      title: SlideList
+      description: A list of slides in a presentation
+      type: object
+      properties:
+        slides:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slide'
+        total:
+          type: integer
+          description: Total number of slides
+          example: 24
     Slide:
       title: Slide
       description: A single slide within a Keynote presentation
@@ -216,3 +185,34 @@ components:
           type: string
           description: Presenter notes for this slide
           example: Welcome everyone to the Q4 review.
+    ErrorResponse:
+      title: ErrorResponse
+      description: API error response
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error description
+          example: The requested presentation was not found.
+  parameters:
+    SlideNumber:
+      name: slideNumber
+      in: path
+      required: true
+      description: The 1-based slide number within the presentation
+      schema:
+        type: integer
+        minimum: 1
+      example: 1
+    PresentationId:
+      name: presentationId
+      in: path
+      required: true
+      description: The unique identifier of the presentation
+      schema:
+        type: string
+      example: pres-001
