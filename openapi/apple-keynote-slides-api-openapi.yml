@@ -130,6 +130,31 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Slide:
+      title: Slide
+      description: A single slide within a Keynote presentation
+      type: object
+      properties:
+        slideNumber:
+          type: integer
+          description: The 1-based position of the slide
+          example: 1
+        title:
+          type: string
+          description: The title displayed on the slide
+          example: Q4 Business Review
+        layout:
+          type: string
+          description: The slide layout name
+          example: Title - Center
+        skipped:
+          type: boolean
+          description: Whether this slide is skipped during playback
+          example: false
+        notes:
+          type: string
+          description: Presenter notes for this slide
+          example: Welcome everyone to the Q4 review.
     AddSlideRequest:
       title: AddSlideRequest
       description: Request body for adding a new slide to a presentation
@@ -160,31 +185,6 @@ components:
           type: integer
           description: Total number of slides
           example: 24
-    Slide:
-      title: Slide
-      description: A single slide within a Keynote presentation
-      type: object
-      properties:
-        slideNumber:
-          type: integer
-          description: The 1-based position of the slide
-          example: 1
-        title:
-          type: string
-          description: The title displayed on the slide
-          example: Q4 Business Review
-        layout:
-          type: string
-          description: The slide layout name
-          example: Title - Center
-        skipped:
-          type: boolean
-          description: Whether this slide is skipped during playback
-          example: false
-        notes:
-          type: string
-          description: Presenter notes for this slide
-          example: Welcome everyone to the Q4 review.
     ErrorResponse:
       title: ErrorResponse
       description: API error response
@@ -199,6 +199,14 @@ components:
           description: Human-readable error description
           example: The requested presentation was not found.
   parameters:
+    PresentationId:
+      name: presentationId
+      in: path
+      required: true
+      description: The unique identifier of the presentation
+      schema:
+        type: string
+      example: pres-001
     SlideNumber:
       name: slideNumber
       in: path
@@ -208,11 +216,3 @@ components:
         type: integer
         minimum: 1
       example: 1
-    PresentationId:
-      name: presentationId
-      in: path
-      required: true
-      description: The unique identifier of the presentation
-      schema:
-        type: string
-      example: pres-001
