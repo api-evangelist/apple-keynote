@@ -155,6 +155,19 @@ components:
           type: string
           description: Presenter notes for this slide
           example: Welcome everyone to the Q4 review.
+    SlideList:
+      title: SlideList
+      description: A list of slides in a presentation
+      type: object
+      properties:
+        slides:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slide'
+        total:
+          type: integer
+          description: Total number of slides
+          example: 24
     AddSlideRequest:
       title: AddSlideRequest
       description: Request body for adding a new slide to a presentation
@@ -172,19 +185,6 @@ components:
           type: string
           description: Initial title text for the slide
           example: New Slide
-    SlideList:
-      title: SlideList
-      description: A list of slides in a presentation
-      type: object
-      properties:
-        slides:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slide'
-        total:
-          type: integer
-          description: Total number of slides
-          example: 24
     ErrorResponse:
       title: ErrorResponse
       description: API error response

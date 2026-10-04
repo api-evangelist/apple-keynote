@@ -184,6 +184,15 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
+  parameters:
+    PresentationId:
+      name: presentationId
+      in: path
+      required: true
+      description: The unique identifier of the presentation
+      schema:
+        type: string
+      example: pres-001
   schemas:
     PresentationList:
       title: PresentationList
@@ -217,15 +226,6 @@ components:
           type: string
           description: The theme to apply to the new presentation
           example: White
-    UpdatePresentationRequest:
-      title: UpdatePresentationRequest
-      description: Request body for updating a Keynote presentation
-      type: object
-      properties:
-        title:
-          type: string
-          description: New title for the presentation
-          example: Q4 Business Review - Final
     Presentation:
       title: Presentation
       description: A Keynote presentation document stored in iCloud
@@ -274,12 +274,12 @@ components:
           type: string
           description: Human-readable error description
           example: The requested presentation was not found.
-  parameters:
-    PresentationId:
-      name: presentationId
-      in: path
-      required: true
-      description: The unique identifier of the presentation
-      schema:
-        type: string
-      example: pres-001
+    UpdatePresentationRequest:
+      title: UpdatePresentationRequest
+      description: Request body for updating a Keynote presentation
+      type: object
+      properties:
+        title:
+          type: string
+          description: New title for the presentation
+          example: Q4 Business Review - Final
