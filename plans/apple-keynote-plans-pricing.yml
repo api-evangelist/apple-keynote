@@ -164,3 +164,69 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - data
+  - seat
+  plans:
+  - name: Keynote App
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - per-use
+  - name: iCloud (Free Tier)
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 50 GB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 200 GB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 2 TB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 6 TB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 12 TB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
