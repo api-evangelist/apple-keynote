@@ -45,6 +45,15 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ThemeList:
+      title: ThemeList
+      description: A list of available Keynote themes
+      type: object
+      properties:
+        themes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Theme'
     Theme:
       title: Theme
       description: An Apple Keynote theme for styling presentations
@@ -70,12 +79,3 @@ components:
           example:
           - '#FFFFFF'
           - '#000000'
-    ThemeList:
-      title: ThemeList
-      description: A list of available Keynote themes
-      type: object
-      properties:
-        themes:
-          type: array
-          items:
-            $ref: '#/components/schemas/Theme'

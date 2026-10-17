@@ -130,6 +130,49 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    AddSlideRequest:
+      title: AddSlideRequest
+      description: Request body for adding a new slide to a presentation
+      type: object
+      properties:
+        layout:
+          type: string
+          description: The slide layout to use
+          example: Title & Bullets
+        position:
+          type: integer
+          description: Where to insert the slide (1-based). Defaults to end.
+          example: 5
+        title:
+          type: string
+          description: Initial title text for the slide
+          example: New Slide
+    SlideList:
+      title: SlideList
+      description: A list of slides in a presentation
+      type: object
+      properties:
+        slides:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slide'
+        total:
+          type: integer
+          description: Total number of slides
+          example: 24
+    ErrorResponse:
+      title: ErrorResponse
+      description: API error response
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error code
+          example: not_found
+        message:
+          type: string
+          description: Human-readable error description
+          example: The requested presentation was not found.
     Slide:
       title: Slide
       description: A single slide within a Keynote presentation
@@ -155,58 +198,7 @@ components:
           type: string
           description: Presenter notes for this slide
           example: Welcome everyone to the Q4 review.
-    SlideList:
-      title: SlideList
-      description: A list of slides in a presentation
-      type: object
-      properties:
-        slides:
-          type: array
-          items:
-            $ref: '#/components/schemas/Slide'
-        total:
-          type: integer
-          description: Total number of slides
-          example: 24
-    AddSlideRequest:
-      title: AddSlideRequest
-      description: Request body for adding a new slide to a presentation
-      type: object
-      properties:
-        layout:
-          type: string
-          description: The slide layout to use
-          example: Title & Bullets
-        position:
-          type: integer
-          description: Where to insert the slide (1-based). Defaults to end.
-          example: 5
-        title:
-          type: string
-          description: Initial title text for the slide
-          example: New Slide
-    ErrorResponse:
-      title: ErrorResponse
-      description: API error response
-      type: object
-      properties:
-        error:
-          type: string
-          description: Error code
-          example: not_found
-        message:
-          type: string
-          description: Human-readable error description
-          example: The requested presentation was not found.
   parameters:
-    PresentationId:
-      name: presentationId
-      in: path
-      required: true
-      description: The unique identifier of the presentation
-      schema:
-        type: string
-      example: pres-001
     SlideNumber:
       name: slideNumber
       in: path
@@ -216,3 +208,11 @@ components:
         type: integer
         minimum: 1
       example: 1
+    PresentationId:
+      name: presentationId
+      in: path
+      required: true
+      description: The unique identifier of the presentation
+      schema:
+        type: string
+      example: pres-001
