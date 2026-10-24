@@ -1,486 +1,479 @@
 {
+  "info": {
+    "_postman_id": "db489315-95b1-46cf-a3f9-728373ecb632",
+    "name": "Apple Keynote iCloud Slides API",
+    "description": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:23:56.000Z",
+    "updatedAt": "2026-10-22T02:23:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-db489315-95b1-46cf-a3f9-728373ecb632"
+  },
   "item": [
     {
-      "id": "54ac998d-3166-4d15-be3f-b69c5cd2f64f",
-      "name": "Slides",
-      "description": {
-        "content": "Slide operations within a presentation",
-        "type": "text/plain"
-      },
+      "name": "presentations",
       "item": [
         {
-          "id": "79543049-d10a-4d87-832c-db5dbcc160f1",
-          "name": "Apple Keynote List Slides",
-          "request": {
-            "name": "Apple Keynote List Slides",
-            "description": {
-              "content": "Returns all slides in a Keynote presentation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId",
-                "slides"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{presentationId}",
+          "item": [
             {
-              "id": "28a1ab45-6345-49c9-a98c-2dfcedafd65d",
-              "name": "Slides returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId",
-                    "slides"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+              "name": "slides",
+              "item": [
+                {
+                  "name": "{slideNumber}",
+                  "item": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"slides\": [\n    {\n      \"slideNumber\": 1,\n      \"title\": \"Q4 Business Review\",\n      \"layout\": \"Title - Center\",\n      \"skipped\": false\n    }\n  ],\n  \"total\": 24\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "be9abf65-3cc8-4025-8354-453ba25eb870",
-          "name": "Apple Keynote Add Slide",
-          "request": {
-            "name": "Apple Keynote Add Slide",
-            "description": {
-              "content": "Adds a new slide to a Keynote presentation at a specified position.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId",
-                "slides"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"layout\": \"<string>\",\n  \"position\": \"<integer>\",\n  \"title\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "3524d671-07c3-4547-94ab-81395bbadded",
-              "name": "Slide added successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId",
-                    "slides"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"layout\": \"Title & Bullets\",\n  \"position\": 5,\n  \"title\": \"New Slide\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"slideNumber\": 25,\n  \"title\": \"New Slide\",\n  \"layout\": \"Title & Bullets\",\n  \"skipped\": false\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "35d92961-dd28-41ed-a391-e992360cc1fd",
-          "name": "Apple Keynote Get Slide",
-          "request": {
-            "name": "Apple Keynote Get Slide",
-            "description": {
-              "content": "Returns the content and properties of a specific slide.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId",
-                "slides",
-                ":slideNumber"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "slideNumber",
-                  "description": "(Required) The 1-based slide number within the presentation"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "f0e35904-0c71-429d-815f-423bfaf85d96",
-              "name": "Slide returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId",
-                    "slides",
-                    ":slideNumber"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
+                      "name": "Apple Keynote Get Slide",
+                      "id": "2db787c9-bcb6-4e24-93c7-b1015c34f464",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/presentations/:presentationId/slides/:slideNumber",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "presentations",
+                            ":presentationId",
+                            "slides",
+                            ":slideNumber"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7422b35f-40e8-48d2-b38a-fe91578cca2e",
+                              "key": "presentationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the presentation"
+                            },
+                            {
+                              "id": "f808f4ed-a42f-41f4-958c-05e3923442eb",
+                              "key": "slideNumber",
+                              "value": "<integer>",
+                              "description": "(Required) The 1-based slide number within the presentation"
+                            }
+                          ]
+                        },
+                        "description": "Returns the content and properties of a specific slide."
+                      },
+                      "response": [
+                        {
+                          "id": "d93eb476-687b-480f-bf48-8a5c25ecd720",
+                          "name": "Slide returned successfully",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/presentations/:presentationId/slides/:slideNumber",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "presentations",
+                                ":presentationId",
+                                "slides",
+                                ":slideNumber"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "presentationId"
+                                },
+                                {
+                                  "key": "slideNumber"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"slideNumber\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"layout\": \"<string>\",\n  \"skipped\": \"<boolean>\",\n  \"notes\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:23:57.000Z",
+                          "updatedAt": "2026-10-22T02:23:57.000Z",
+                          "uid": "35240-d93eb476-687b-480f-bf48-8a5c25ecd720"
+                        },
+                        {
+                          "id": "ab26d75d-cca3-4fdb-8256-9f5cdb349f0a",
+                          "name": "Slide not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/presentations/:presentationId/slides/:slideNumber",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "presentations",
+                                ":presentationId",
+                                "slides",
+                                ":slideNumber"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "presentationId"
+                                },
+                                {
+                                  "key": "slideNumber"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-10-22T02:23:57.000Z",
+                          "updatedAt": "2026-10-22T02:23:57.000Z",
+                          "uid": "35240-ab26d75d-cca3-4fdb-8256-9f5cdb349f0a"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:23:57.000Z",
+                      "updatedAt": "2026-10-22T02:23:57.000Z",
+                      "uid": "35240-2db787c9-bcb6-4e24-93c7-b1015c34f464"
                     },
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "slideNumber",
-                      "description": "(Required) The 1-based slide number within the presentation"
+                      "name": "Apple Keynote Delete Slide",
+                      "id": "51e7a35c-f2aa-4736-8b25-07338a2018e0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/presentations/:presentationId/slides/:slideNumber",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "presentations",
+                            ":presentationId",
+                            "slides",
+                            ":slideNumber"
+                          ],
+                          "variable": [
+                            {
+                              "id": "64a5f3e0-f1c0-427d-b42c-675da51629ff",
+                              "key": "presentationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier of the presentation"
+                            },
+                            {
+                              "id": "be550ceb-acfa-472f-bf56-3e92e16f36cc",
+                              "key": "slideNumber",
+                              "value": "<integer>",
+                              "description": "(Required) The 1-based slide number within the presentation"
+                            }
+                          ]
+                        },
+                        "description": "Removes a slide from a presentation."
+                      },
+                      "response": [
+                        {
+                          "id": "5e77cb72-7170-4545-a98e-2c01a788fe7c",
+                          "name": "Slide deleted successfully",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/presentations/:presentationId/slides/:slideNumber",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "presentations",
+                                ":presentationId",
+                                "slides",
+                                ":slideNumber"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "presentationId"
+                                },
+                                {
+                                  "key": "slideNumber"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-10-22T02:23:57.000Z",
+                          "updatedAt": "2026-10-22T02:23:57.000Z",
+                          "uid": "35240-5e77cb72-7170-4545-a98e-2c01a788fe7c"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T02:23:57.000Z",
+                      "updatedAt": "2026-10-22T02:23:57.000Z",
+                      "uid": "35240-51e7a35c-f2aa-4736-8b25-07338a2018e0"
                     }
-                  ]
+                  ],
+                  "id": "21862d5a-b7d4-444e-8c83-1da27cc7e97f",
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-21862d5a-b7d4-444e-8c83-1da27cc7e97f"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"slideNumber\": 1,\n  \"title\": \"Q4 Business Review\",\n  \"layout\": \"Title - Center\",\n  \"skipped\": false,\n  \"notes\": \"Welcome everyone to the Q4 review.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c85f6ec4-ae62-4e9d-8829-d0168f037134",
-              "name": "Slide not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId",
-                    "slides",
-                    ":slideNumber"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
+                  "name": "Apple Keynote List Slides",
+                  "id": "8fc10845-595f-4044-995c-d669ba2db47d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId/slides",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId",
+                        "slides"
+                      ],
+                      "variable": [
+                        {
+                          "id": "99ad8e59-aafb-4abd-826d-6f5afc1a5419",
+                          "key": "presentationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the presentation"
+                        }
+                      ]
                     },
+                    "description": "Returns all slides in a Keynote presentation."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "slideNumber",
-                      "description": "(Required) The 1-based slide number within the presentation"
+                      "id": "fb80547d-1532-4037-8a1d-c082421dd404",
+                      "name": "Slides returned successfully",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/presentations/:presentationId/slides",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "presentations",
+                            ":presentationId",
+                            "slides"
+                          ],
+                          "variable": [
+                            {
+                              "key": "presentationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"slides\": [\n    {\n      \"slideNumber\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"layout\": \"<string>\",\n      \"skipped\": \"<boolean>\",\n      \"notes\": \"<string>\"\n    },\n    {\n      \"slideNumber\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"layout\": \"<string>\",\n      \"skipped\": \"<boolean>\",\n      \"notes\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T02:23:57.000Z",
+                      "updatedAt": "2026-10-22T02:23:57.000Z",
+                      "uid": "35240-fb80547d-1532-4037-8a1d-c082421dd404"
                     }
-                  ]
+                  ],
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-8fc10845-595f-4044-995c-d669ba2db47d"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Apple Keynote Add Slide",
+                  "id": "127b8920-dd88-4efe-b494-7d3b1d5008b8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"layout\": \"<string>\",\n  \"position\": \"<integer>\",\n  \"title\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId/slides",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId",
+                        "slides"
+                      ],
+                      "variable": [
+                        {
+                          "id": "baa31e0e-1d51-47ce-8783-5818ecf79ccb",
+                          "key": "presentationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the presentation"
+                        }
+                      ]
+                    },
+                    "description": "Adds a new slide to a Keynote presentation at a specified position."
+                  },
+                  "response": [
+                    {
+                      "id": "bc1b029a-0d36-41aa-8cc2-6bf0d8ff8a8e",
+                      "name": "Slide added successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"layout\": \"<string>\",\n  \"position\": \"<integer>\",\n  \"title\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/presentations/:presentationId/slides",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "presentations",
+                            ":presentationId",
+                            "slides"
+                          ],
+                          "variable": [
+                            {
+                              "key": "presentationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"slideNumber\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"layout\": \"<string>\",\n  \"skipped\": \"<boolean>\",\n  \"notes\": \"<string>\"\n}",
+                      "createdAt": "2026-10-22T02:23:57.000Z",
+                      "updatedAt": "2026-10-22T02:23:57.000Z",
+                      "uid": "35240-bc1b029a-0d36-41aa-8cc2-6bf0d8ff8a8e"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:23:57.000Z",
+                  "updatedAt": "2026-10-22T02:23:57.000Z",
+                  "uid": "35240-127b8920-dd88-4efe-b494-7d3b1d5008b8"
                 }
               ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested presentation was not found.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "964268d7-f49c-49b6-820a-7bfa26e505d4",
+              "createdAt": "2026-10-22T02:23:57.000Z",
+              "updatedAt": "2026-10-22T02:23:57.000Z",
+              "uid": "35240-964268d7-f49c-49b6-820a-7bfa26e505d4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "54dd055d-8df9-4d63-b032-17a21c627a19",
-          "name": "Apple Keynote Delete Slide",
-          "request": {
-            "name": "Apple Keynote Delete Slide",
-            "description": {
-              "content": "Removes a slide from a presentation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId",
-                "slides",
-                ":slideNumber"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                },
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<integer>",
-                  "key": "slideNumber",
-                  "description": "(Required) The 1-based slide number within the presentation"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c97cbd9e-0843-4b97-95df-140a7d99ace4",
-              "name": "Slide deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId",
-                    "slides",
-                    ":slideNumber"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    },
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<integer>",
-                      "key": "slideNumber",
-                      "description": "(Required) The 1-based slide number within the presentation"
-                    }
-                  ]
-                },
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "aa32a309-83f9-4a5d-9448-9a66214ec41f",
+          "createdAt": "2026-10-22T02:23:57.000Z",
+          "updatedAt": "2026-10-22T02:23:57.000Z",
+          "uid": "35240-aa32a309-83f9-4a5d-9448-9a66214ec41f"
         }
       ],
-      "event": []
+      "id": "3d041e07-12c8-4fcb-95af-3ac68cd70e95",
+      "createdAt": "2026-10-22T02:23:57.000Z",
+      "updatedAt": "2026-10-22T02:23:57.000Z",
+      "uid": "35240-3d041e07-12c8-4fcb-95af-3ac68cd70e95"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://p00-keynote.icloud.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://p00-keynote.icloud.com"
     }
-  ],
-  "info": {
-    "_postman_id": "41029f99-f0e8-4d02-92c6-b6b493cd58c7",
-    "name": "Apple Keynote iCloud Export Slides API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

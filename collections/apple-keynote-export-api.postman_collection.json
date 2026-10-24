@@ -1,143 +1,160 @@
 {
+  "info": {
+    "_postman_id": "37aecddd-c18b-48aa-a048-20018bc886a1",
+    "name": "Apple Keynote iCloud Export API",
+    "description": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:23:43.000Z",
+    "updatedAt": "2026-10-22T02:23:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-37aecddd-c18b-48aa-a048-20018bc886a1"
+  },
   "item": [
     {
-      "id": "a9d31912-36d8-4fd2-ab69-b356be6fb0dd",
-      "name": "Export",
-      "description": {
-        "content": "Exporting presentations to various formats",
-        "type": "text/plain"
-      },
+      "name": "presentations",
       "item": [
         {
-          "id": "65bf413e-8c1c-4553-98c8-6768676d87e3",
-          "name": "Apple Keynote Export Presentation",
-          "request": {
-            "name": "Apple Keynote Export Presentation",
-            "description": {
-              "content": "Exports a Keynote presentation to a specified format such as PDF, PowerPoint, or images.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId",
-                "export"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"format\": \"<string>\",\n  \"includeNotes\": \"<boolean>\",\n  \"slideRange\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
+          "name": "{presentationId}",
+          "item": [
             {
-              "id": "ffb95e18-4f4a-4c6a-8478-b538454a2fc6",
-              "name": "Export completed, returns download URL",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId",
-                    "export"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"format\": \"pdf\",\n  \"includeNotes\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "name": "export",
+              "item": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "name": "Apple Keynote Export Presentation",
+                  "id": "95dfbf4c-2bf3-431e-9ce2-739a960b017a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"format\": \"images\",\n  \"includeNotes\": \"<boolean>\",\n  \"slideRange\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId/export",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId",
+                        "export"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d92c4642-2eb8-4ae4-b77e-c984b02e21b4",
+                          "key": "presentationId",
+                          "value": "<string>",
+                          "description": "(Required) The unique identifier of the presentation"
+                        }
+                      ]
+                    },
+                    "description": "Exports a Keynote presentation to a specified format such as PDF, PowerPoint, or images."
+                  },
+                  "response": [
+                    {
+                      "id": "72c2ddde-febd-4f75-8a8f-df5087d6d72b",
+                      "name": "Export completed, returns download URL",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"format\": \"images\",\n  \"includeNotes\": \"<boolean>\",\n  \"slideRange\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/presentations/:presentationId/export",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "presentations",
+                            ":presentationId",
+                            "export"
+                          ],
+                          "variable": [
+                            {
+                              "key": "presentationId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"downloadUrl\": \"<uri>\",\n  \"format\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-10-22T02:23:44.000Z",
+                      "updatedAt": "2026-10-22T02:23:44.000Z",
+                      "uid": "35240-72c2ddde-febd-4f75-8a8f-df5087d6d72b"
+                    }
+                  ],
+                  "createdAt": "2026-10-22T02:23:44.000Z",
+                  "updatedAt": "2026-10-22T02:23:44.000Z",
+                  "uid": "35240-95dfbf4c-2bf3-431e-9ce2-739a960b017a"
                 }
               ],
-              "body": "{\n  \"downloadUrl\": \"https://keynote.icloud.com/download/pres-001-export.pdf\",\n  \"format\": \"pdf\",\n  \"expiresAt\": \"2025-03-16T14:30:00Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "921503f1-8e53-4271-af96-e3bcad04c9f7",
+              "createdAt": "2026-10-22T02:23:44.000Z",
+              "updatedAt": "2026-10-22T02:23:44.000Z",
+              "uid": "35240-921503f1-8e53-4271-af96-e3bcad04c9f7"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "9ef68231-1e7f-44de-9fc1-fb32e674cac9",
+          "createdAt": "2026-10-22T02:23:44.000Z",
+          "updatedAt": "2026-10-22T02:23:44.000Z",
+          "uid": "35240-9ef68231-1e7f-44de-9fc1-fb32e674cac9"
         }
       ],
-      "event": []
+      "id": "b7165a9c-5669-4696-8d97-6d830e99a85a",
+      "createdAt": "2026-10-22T02:23:44.000Z",
+      "updatedAt": "2026-10-22T02:23:44.000Z",
+      "uid": "35240-b7165a9c-5669-4696-8d97-6d830e99a85a"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://p00-keynote.icloud.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://p00-keynote.icloud.com"
     }
-  ],
-  "info": {
-    "_postman_id": "200efac1-dd42-4691-858a-e9d9f5041042",
-    "name": "Apple Keynote iCloud Export API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

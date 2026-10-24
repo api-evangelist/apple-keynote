@@ -1,124 +1,432 @@
 {
+  "info": {
+    "_postman_id": "a445f9a9-4a0c-4e98-bbc2-23b24fd19a95",
+    "name": "Apple Keynote iCloud Presentations API",
+    "description": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T02:23:49.000Z",
+    "updatedAt": "2026-10-22T02:23:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a445f9a9-4a0c-4e98-bbc2-23b24fd19a95"
+  },
   "item": [
     {
-      "id": "a797258a-74ce-42cd-8846-0d1541b2f54e",
-      "name": "Presentations",
-      "description": {
-        "content": "Keynote presentation document management",
-        "type": "text/plain"
-      },
+      "name": "presentations",
       "item": [
         {
-          "id": "093452f4-e0ad-420a-ba82-6eebcc5004f0",
-          "name": "Apple Keynote List Presentations",
-          "request": {
-            "name": "Apple Keynote List Presentations",
-            "description": {
-              "content": "Returns a list of Keynote presentations in the user's iCloud account.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "50",
-                  "description": "Maximum number of presentations to return"
-                },
-                {
-                  "disabled": false,
-                  "key": "offset",
-                  "value": "0",
-                  "description": "Number of presentations to skip for pagination"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{presentationId}",
+          "item": [
             {
-              "id": "50b9e710-25dc-424e-b7ac-9ec2d11b348d",
-              "name": "List of presentations returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "limit",
-                      "value": "50"
-                    },
-                    {
-                      "key": "offset",
-                      "value": "0"
-                    }
-                  ],
-                  "variable": []
-                },
+              "name": "Apple Keynote Get Presentation",
+              "id": "00e3a0e4-098f-401a-a422-b42dfabb187e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
+                "url": {
+                  "raw": "{{baseUrl}}/presentations/:presentationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presentations",
+                    ":presentationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "4a518425-5b0b-40f0-833d-591b98333664",
+                      "key": "presentationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the presentation"
+                    }
+                  ]
+                },
+                "description": "Returns metadata and content for a specific Keynote presentation."
+              },
+              "response": [
+                {
+                  "id": "956f4ea9-280e-40b5-9503-ceb359dc36e4",
+                  "name": "Presentation returned successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presentationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slideCount\": \"<integer>\",\n  \"theme\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"author\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:23:50.000Z",
+                  "updatedAt": "2026-10-22T02:23:50.000Z",
+                  "uid": "35240-956f4ea9-280e-40b5-9503-ceb359dc36e4"
+                },
+                {
+                  "id": "1a11aa84-89c2-49da-8576-3b2fe212b548",
+                  "name": "Presentation not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presentationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:23:50.000Z",
+                  "updatedAt": "2026-10-22T02:23:50.000Z",
+                  "uid": "35240-1a11aa84-89c2-49da-8576-3b2fe212b548"
+                }
+              ],
+              "createdAt": "2026-10-22T02:23:50.000Z",
+              "updatedAt": "2026-10-22T02:23:50.000Z",
+              "uid": "35240-00e3a0e4-098f-401a-a422-b42dfabb187e"
+            },
+            {
+              "name": "Apple Keynote Update Presentation",
+              "id": "768891f3-5867-4f4c-b3ce-6cfc34e1b778",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"title\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/presentations/:presentationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presentations",
+                    ":presentationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "86650f22-c052-406a-ace0-d0aad5fe604c",
+                      "key": "presentationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the presentation"
+                    }
+                  ]
+                },
+                "description": "Updates the metadata of a Keynote presentation such as its title."
+              },
+              "response": [
+                {
+                  "id": "e2b43c8d-c5b7-4ad6-9941-139a4d87376b",
+                  "name": "Presentation updated successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"title\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presentationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slideCount\": \"<integer>\",\n  \"theme\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"author\": \"<string>\"\n}",
+                  "createdAt": "2026-10-22T02:23:50.000Z",
+                  "updatedAt": "2026-10-22T02:23:50.000Z",
+                  "uid": "35240-e2b43c8d-c5b7-4ad6-9941-139a4d87376b"
+                }
+              ],
+              "createdAt": "2026-10-22T02:23:50.000Z",
+              "updatedAt": "2026-10-22T02:23:50.000Z",
+              "uid": "35240-768891f3-5867-4f4c-b3ce-6cfc34e1b778"
+            },
+            {
+              "name": "Apple Keynote Delete Presentation",
+              "id": "390d38fd-0c14-4154-97c7-3594067b6109",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/presentations/:presentationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presentations",
+                    ":presentationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "8d91048d-127e-49c6-ae1e-4b6db81c6edf",
+                      "key": "presentationId",
+                      "value": "<string>",
+                      "description": "(Required) The unique identifier of the presentation"
+                    }
+                  ]
+                },
+                "description": "Deletes a Keynote presentation from iCloud."
+              },
+              "response": [
+                {
+                  "id": "0bfdef52-f8cd-4cdd-bc67-4e7f59454b6c",
+                  "name": "Presentation deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/presentations/:presentationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "presentations",
+                        ":presentationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "presentationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-10-22T02:23:50.000Z",
+                  "updatedAt": "2026-10-22T02:23:50.000Z",
+                  "uid": "35240-0bfdef52-f8cd-4cdd-bc67-4e7f59454b6c"
+                }
+              ],
+              "createdAt": "2026-10-22T02:23:50.000Z",
+              "updatedAt": "2026-10-22T02:23:50.000Z",
+              "uid": "35240-390d38fd-0c14-4154-97c7-3594067b6109"
+            }
+          ],
+          "id": "25bd74f5-6d84-40b8-b69d-8ec41199fad7",
+          "createdAt": "2026-10-22T02:23:50.000Z",
+          "updatedAt": "2026-10-22T02:23:50.000Z",
+          "uid": "35240-25bd74f5-6d84-40b8-b69d-8ec41199fad7"
+        },
+        {
+          "name": "Apple Keynote List Presentations",
+          "id": "c07f37cd-f67d-4303-87e7-a06f6b5192b3",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/presentations?limit=50&offset=0",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "presentations"
+              ],
+              "query": [
+                {
+                  "description": "Maximum number of presentations to return",
+                  "key": "limit",
+                  "value": "50"
+                },
+                {
+                  "description": "Number of presentations to skip for pagination",
+                  "key": "offset",
+                  "value": "0"
+                }
+              ]
+            },
+            "description": "Returns a list of Keynote presentations in the user's iCloud account."
+          },
+          "response": [
+            {
+              "id": "d136ec17-8dc3-4fee-b8b4-963b6390a1ff",
+              "name": "List of presentations returned successfully",
+              "originalRequest": {
                 "method": "GET",
-                "body": {}
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/presentations?limit=50&offset=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presentations"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of presentations to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Number of presentations to skip for pagination",
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"presentations\": [\n    {\n      \"id\": \"pres-001\",\n      \"title\": \"Q4 Business Review\",\n      \"slideCount\": 24,\n      \"modifiedDate\": \"2025-03-15T14:30:00Z\"\n    }\n  ],\n  \"total\": 1\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"presentations\": [\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"slideCount\": \"<integer>\",\n      \"theme\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"author\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"title\": \"<string>\",\n      \"slideCount\": \"<integer>\",\n      \"theme\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"author\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\",\n  \"offset\": \"<integer>\"\n}",
+              "createdAt": "2026-10-22T02:23:50.000Z",
+              "updatedAt": "2026-10-22T02:23:50.000Z",
+              "uid": "35240-d136ec17-8dc3-4fee-b8b4-963b6390a1ff"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:23:50.000Z",
+          "updatedAt": "2026-10-22T02:23:50.000Z",
+          "uid": "35240-c07f37cd-f67d-4303-87e7-a06f6b5192b3"
         },
         {
-          "id": "feb84d92-be7b-439e-a700-b9dc381ab83d",
           "name": "Apple Keynote Create Presentation",
+          "id": "041b590b-c0f0-4c0e-979f-abca656bf21a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Apple Keynote Create Presentation",
-            "description": {
-              "content": "Creates a new Keynote presentation in iCloud.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": []
-            },
+            "method": "POST",
             "header": [
               {
                 "key": "Content-Type",
@@ -129,404 +437,95 @@
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
             "body": {
               "mode": "raw",
               "raw": "{\n  \"title\": \"<string>\",\n  \"theme\": \"<string>\"\n}",
               "options": {
                 "raw": {
+                  "headerFamily": "json",
                   "language": "json"
                 }
               }
-            }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/presentations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "presentations"
+              ]
+            },
+            "description": "Creates a new Keynote presentation in iCloud."
           },
           "response": [
             {
-              "id": "4831a81d-16c3-47cf-a8a7-3079d3a30a0d",
+              "id": "dbfe723f-4ded-4760-9c90-306a329247b4",
               "name": "Presentation created successfully",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": []
-                },
+                "method": "POST",
                 "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"title\": \"My New Presentation\",\n  \"theme\": \"White\"\n}",
+                  "raw": "{\n  \"title\": \"<string>\",\n  \"theme\": \"<string>\"\n}",
                   "options": {
                     "raw": {
+                      "headerFamily": "json",
                       "language": "json"
                     }
                   }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/presentations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "presentations"
+                  ]
                 }
               },
               "status": "Created",
               "code": 201,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"pres-002\",\n  \"title\": \"My New Presentation\",\n  \"slideCount\": 1,\n  \"createdDate\": \"2025-03-15T14:30:00Z\",\n  \"modifiedDate\": \"2025-03-15T14:30:00Z\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"slideCount\": \"<integer>\",\n  \"theme\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\",\n  \"author\": \"<string>\"\n}",
+              "createdAt": "2026-10-22T02:23:50.000Z",
+              "updatedAt": "2026-10-22T02:23:50.000Z",
+              "uid": "35240-dbfe723f-4ded-4760-9c90-306a329247b4"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "f59a98d9-2fec-4e25-a7a0-e625b8e5cb5f",
-          "name": "Apple Keynote Get Presentation",
-          "request": {
-            "name": "Apple Keynote Get Presentation",
-            "description": {
-              "content": "Returns metadata and content for a specific Keynote presentation.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e2d0abb5-8cf9-45b1-9750-b494d0cd7022",
-              "name": "Presentation returned successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"pres-001\",\n  \"title\": \"Q4 Business Review\",\n  \"slideCount\": 24,\n  \"createdDate\": \"2025-01-10T09:00:00Z\",\n  \"modifiedDate\": \"2025-03-15T14:30:00Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "bfe67fc9-c8b6-4a77-8777-9e1a8ea597f6",
-              "name": "Presentation not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"The requested presentation was not found.\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "fab9e09f-d448-400a-9f76-6304eb77c0e2",
-          "name": "Apple Keynote Update Presentation",
-          "request": {
-            "name": "Apple Keynote Update Presentation",
-            "description": {
-              "content": "Updates the metadata of a Keynote presentation such as its title.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "PUT",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"title\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "bd368c65-2660-486f-87d6-8d8e5dee2ede",
-              "name": "Presentation updated successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "PUT",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"title\": \"Q4 Business Review - Final\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"pres-001\",\n  \"title\": \"Q4 Business Review - Final\",\n  \"slideCount\": 24,\n  \"modifiedDate\": \"2025-03-16T10:00:00Z\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "46f9c6f8-95c2-4f6d-ab5a-9138d5945d2e",
-          "name": "Apple Keynote Delete Presentation",
-          "request": {
-            "name": "Apple Keynote Delete Presentation",
-            "description": {
-              "content": "Deletes a Keynote presentation from iCloud.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "presentations",
-                ":presentationId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "presentationId",
-                  "description": "(Required) The unique identifier of the presentation"
-                }
-              ]
-            },
-            "method": "DELETE",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "31e184e6-90f9-4f5e-ba9e-27d0b12bb6be",
-              "name": "Presentation deleted successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "presentations",
-                    ":presentationId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "presentationId",
-                      "description": "(Required) The unique identifier of the presentation"
-                    }
-                  ]
-                },
-                "method": "DELETE",
-                "body": {}
-              },
-              "status": "No Content",
-              "code": 204,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "text/plain"
-                }
-              ],
-              "body": "",
-              "cookie": [],
-              "_postman_previewlanguage": "text"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-22T02:23:50.000Z",
+          "updatedAt": "2026-10-22T02:23:50.000Z",
+          "uid": "35240-041b590b-c0f0-4c0e-979f-abca656bf21a"
         }
       ],
-      "event": []
+      "id": "cc0240d3-727d-4047-94f3-1742e2925fdb",
+      "createdAt": "2026-10-22T02:23:50.000Z",
+      "updatedAt": "2026-10-22T02:23:50.000Z",
+      "uid": "35240-cc0240d3-727d-4047-94f3-1742e2925fdb"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://p00-keynote.icloud.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://p00-keynote.icloud.com"
     }
-  ],
-  "info": {
-    "_postman_id": "3b477d54-f150-4b78-8c28-6d7e6fbb96f8",
-    "name": "Apple Keynote iCloud Export Presentations API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "The Apple Keynote iCloud API provides programmatic access to Keynote presentations stored in iCloud. It enables creating, reading, updating, and exporting presentations, slides, and their elements. This specification is generated from Apple documentation and iCloud web interface analysis.\n\nContact Support:\n Name: Apple Developer Support",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
