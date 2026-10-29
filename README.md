@@ -1,4 +1,4 @@
-# Apple Keynote (apple-keynote)
+# Apple Keynote
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,183 +66,171 @@
 
 Apple Keynote is a presentation software application developed by Apple Inc. as part of the iWork productivity suite, available on macOS, iOS, iPadOS, and the web via iCloud. It enables creating visually rich presentations with animations, transitions, charts, and real-time collaboration. Keynote supports automation via AppleScript, JavaScript for Automation (JXA), and Apple Shortcuts, and provides iCloud-based access for cross-device sync and sharing.
 
-**URL:** [Visit APIs.json URL](https://www.apple.com/keynote/)
+**Areas:** Apple · Design · iWork · Presentations · Productivity · Slides
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Apple Keynote on APIs.io
 
-## Tags:
+Everything profiled for Apple Keynote is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apple-keynote/](https://apis.io/providers/apple-keynote/)** — or go straight to one of the APIs or properties below.
 
- - Apple, Design, iWork, Presentations, Productivity, Slides
+### APIs (7)
 
-## Timestamps
+- [Keynote AppleScript API](https://apis.io/apis/apple-keynote/keynote-applescript-api/) — Local automation API for Keynote using AppleScript, enabling programmatic control of presentations, slides, and elements on macOS. Access via the Open…
+- [Keynote JavaScript for Automation API](https://apis.io/apis/apple-keynote/keynote-javascript-for-automation-api/) — JavaScript-based automation interface for controlling Keynote on macOS using the Open Scripting Architecture (OSA). Provides the same capabilities as…
+- [Keynote Shortcuts Actions](https://apis.io/apis/apple-keynote/keynote-shortcuts-actions/) — Shortcuts app actions for Keynote on iOS, iPadOS, and macOS, enabling users to open, create, and export presentations as part of automated workflows…
+- [Apple Keynote Export API](https://apis.io/apis/apple-keynote/apple-keynote-export-api/) — Exporting presentations to various formats
+- [Apple Keynote Presentations API](https://apis.io/apis/apple-keynote/apple-keynote-presentations-api/) — Keynote presentation document management
+- [Apple Keynote Slides API](https://apis.io/apis/apple-keynote/apple-keynote-slides-api/) — Slide operations within a presentation
+- [Apple Keynote Themes API](https://apis.io/apis/apple-keynote/apple-keynote-themes-api/) — Presentation themes and templates
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-19
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Keynote iCloud API
-Cloud-based API for accessing and manipulating Keynote presentations through iCloud, enabling programmatic creation, management, slide operations, and multi-format export of presentations stored in iCloud.
+#### Agentic access (1)
 
-**Human URL:** [https://www.icloud.com/keynote](https://www.icloud.com/keynote)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags:
+- [Apple Keynote Agentic Access](https://apis.io/agentic-access/apple-keynote/apple-keynote-agentic-access/)
 
- - Cloud Storage, Collaboration, Presentations, Slides, iCloud
+#### JSON Schema (4)
 
-#### Properties
+The data models the API reads and writes.
 
-- [Documentation](https://developer.apple.com/documentation/)
-- [OpenAPI](openapi/apple-keynote-icloud-openapi.yaml)
-- [JSONSchema - Presentation Schema](json-schema/apple-keynote-presentation-schema.json)
-- [JSONSchema - Slide Schema](json-schema/apple-keynote-slide-schema.json)
-- [JSONSchema - Theme Schema](json-schema/apple-keynote-theme-schema.json)
-- [JSONSchema - Export Request Schema](json-schema/apple-keynote-export-request-schema.json)
+- [ExportRequest](https://apis.io/schemas/apple-keynote/apple-keynote-export-request/)
+- [Apple Keynote Presentation](https://apis.io/schemas/apple-keynote/apple-keynote-presentation/)
+- [Slide](https://apis.io/schemas/apple-keynote/apple-keynote-slide/)
+- [Theme](https://apis.io/schemas/apple-keynote/apple-keynote-theme/)
 
-### Keynote AppleScript API
-Local automation API for Keynote using AppleScript, enabling programmatic control of presentations, slides, and elements on macOS.
+#### JSON Structure (4)
 
-**Human URL:** [https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/)
+Data models expressed in JSON Structure.
 
-#### Tags:
+- [Apple Keynote Export Request Structure](https://apis.io/json-structure/apple-keynote/apple-keynote-export-request-structure/)
+- [Apple Keynote Presentation Structure](https://apis.io/json-structure/apple-keynote/apple-keynote-presentation-structure/)
+- [Apple Keynote Slide Structure](https://apis.io/json-structure/apple-keynote/apple-keynote-slide-structure/)
+- [Apple Keynote Theme Structure](https://apis.io/json-structure/apple-keynote/apple-keynote-theme-structure/)
 
- - Automation, Local API, macOS, Scripting
+#### JSON-LD (1)
 
-#### Properties
+Linked-data contexts for the provider's vocabulary.
 
-- [Documentation](https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/KeynoteScriptingGuide/)
-- [APIReference](https://developer.apple.com/library/archive/documentation/AppleApplications/Conceptual/KeynoteScriptingGuide/)
+- [Apple Keynote Context](https://apis.io/jsonld/apple-keynote/apple-keynote-context/)
 
-### Keynote JavaScript for Automation API
-JavaScript-based automation interface for controlling Keynote on macOS using JXA and the Open Scripting Architecture.
+#### Vocabulary (1)
 
-**Human URL:** [https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/](https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/)
+The provider's domain terms, defined.
 
-#### Tags:
+- [Apple Keynote Vocabulary](https://apis.io/vocabularies/apple-keynote/apple-keynote-vocabulary/)
 
- - Automation, JavaScript, macOS, Scripting
+#### Examples (4)
 
-#### Properties
+Example requests and responses.
 
-- [Documentation](https://developer.apple.com/library/archive/releasenotes/InterapplicationCommunication/RN-JavaScriptForAutomation/)
+- [Apple Keynote Export Request Example](https://apis.io/examples/apple-keynote/apple-keynote-export-request-example/)
+- [Apple Keynote Presentation Example](https://apis.io/examples/apple-keynote/apple-keynote-presentation-example/)
+- [Apple Keynote Slide Example](https://apis.io/examples/apple-keynote/apple-keynote-slide-example/)
+- [Apple Keynote Theme Example](https://apis.io/examples/apple-keynote/apple-keynote-theme-example/)
 
-### Keynote Shortcuts Actions
-Shortcuts app actions for Keynote on iOS, iPadOS, and macOS, enabling automated presentation workflows.
+#### Collections (4)
 
-**Human URL:** [https://developer.apple.com/shortcuts/](https://developer.apple.com/shortcuts/)
+Postman and Open Collection request collections.
 
-#### Tags:
+- [Apple Keynote iCloud Export API](https://apis.io/collections/apple-keynote/open-apple-keynote-export-api/)
+- [Apple Keynote iCloud Export Presentations API](https://apis.io/collections/apple-keynote/open-apple-keynote-presentations-api/)
+- [Apple Keynote iCloud Export Slides API](https://apis.io/collections/apple-keynote/open-apple-keynote-slides-api/)
+- [Apple Keynote iCloud Export Themes API](https://apis.io/collections/apple-keynote/open-apple-keynote-themes-api/)
 
- - Automation, iOS, Shortcuts, Workflows
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://developer.apple.com/documentation/appintents/app-shortcuts)
+- [Apple Keynote — jsonschema rules](https://apis.io/rules/apple-keynote/apple-keynote-jsonschema-spectral-rules/)
+- [Apple Keynote API Rules](https://apis.io/rules/apple-keynote/apple-keynote-spectral-rules/)
 
-## Common Properties
+#### Security (2)
 
-- [Portal](https://developer.apple.com/)
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Apple Keynote Domain Security](https://apis.io/security/apple-keynote/apple-keynote-domain-security/)
+- [Apple Keynote Vulnerability Disclosure](https://apis.io/security/apple-keynote/apple-keynote-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Apple Keynote Plans Pricing](https://apis.io/plans/apple-keynote/apple-keynote-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Apple Keynote Rate Limits](https://apis.io/rate-limits/apple-keynote/apple-keynote-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Apple Keynote Finops](https://apis.io/finops/apple-keynote/apple-keynote-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.apple.com/)
 - [Documentation](https://support.apple.com/guide/keynote/)
 - [Support](https://developer.apple.com/support/)
-- [TermsOfService](https://developer.apple.com/support/terms/)
-- [PrivacyPolicy](https://www.apple.com/privacy/)
-- [StackOverflow](https://stackoverflow.com/questions/tagged/keynote)
-- [YouTube](https://www.youtube.com/@AppleDeveloper)
+- [Terms of service](https://developer.apple.com/support/terms/)
+- [Privacy policy](https://www.apple.com/privacy/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Multi-Platform Availability | Available on macOS, iOS, iPadOS, and web browsers via iCloud |
-| Real-Time Collaboration | Multiple users can edit presentations simultaneously via iCloud sharing |
-| Magic Move Transitions | Intelligent morph transitions that animate elements between slides |
-| AppleScript Automation | Full scripting support via AppleScript and JavaScript for Automation |
-| Shortcuts Integration | Apple Shortcuts actions for automated presentation workflows on iOS and macOS |
-| Multi-Format Export | Export to PDF, PowerPoint (.pptx), HTML, images, and native .key format |
-| Live Video Presenter | Present with live video overlays in video conferencing applications |
-| Cinematic Animations | Rich build-in and build-out animations for slide elements |
-| Charts and Data Visualization | Built-in chart types including bar, line, pie, scatter, and more with live data |
+**Kin Score 31.3** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 69.6 |
+| Contract quality | 29.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 28.9 |
 
-| Name | Description |
-|------|-------------|
-| Business Presentations | Creating professional pitch decks, board presentations, and quarterly reviews |
-| Educational Content | Designing lecture slides, course materials, and educational presentations |
-| Marketing Materials | Producing brand presentations, product launches, and sales decks |
-| Automated Report Generation | Using AppleScript or Shortcuts to programmatically generate recurring presentation reports |
-| Conference Presentations | Creating polished conference talks with animations and transitions |
-| Training Materials | Building step-by-step training and onboarding presentations |
+**Agent readiness 20.4** — agent-aware
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| iCloud Drive | Automatic sync and storage of presentations across Apple devices |
-| Apple Numbers | Import live chart data from Numbers spreadsheets |
-| Apple Pages | Cross-link documents and share content between Pages and Keynote |
-| Microsoft PowerPoint | Import and export PPTX files for cross-platform compatibility |
-| Zoom | Present directly from Keynote in Zoom video calls |
-| Apple Shortcuts | Automate presentation creation and export workflows on iOS and macOS |
-| Spotlight | Index and search Keynote presentation content via macOS Spotlight |
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apple-keynote/](https://apis.io/providers/apple-keynote/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Apple Keynote iCloud API](openapi/apple-keynote-icloud-openapi.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apple Keynote: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Presentation Schema](json-schema/apple-keynote-presentation-schema.json)
-- [Slide Schema](json-schema/apple-keynote-slide-schema.json)
-- [Theme Schema](json-schema/apple-keynote-theme-schema.json)
-- [Export Request Schema](json-schema/apple-keynote-export-request-schema.json)
-
-### JSON Structure
-
-- [Presentation Structure](json-structure/apple-keynote-presentation-structure.json)
-- [Slide Structure](json-structure/apple-keynote-slide-structure.json)
-- [Theme Structure](json-structure/apple-keynote-theme-structure.json)
-- [Export Request Structure](json-structure/apple-keynote-export-request-structure.json)
-
-### JSON-LD
-
-- [Apple Keynote Context](json-ld/apple-keynote-context.jsonld)
-
-### Examples
-
-- [Presentation Example](examples/apple-keynote-presentation-example.json)
-- [Slide Example](examples/apple-keynote-slide-example.json)
-- [Theme Example](examples/apple-keynote-theme-example.json)
-- [Export Request Example](examples/apple-keynote-export-request-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [Apple Keynote iCloud API](capabilities/shared/apple-keynote-icloud.yaml) — 8 operations for iCloud presentation management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Presentation Automation](capabilities/presentation-automation.yaml) | Keynote iCloud API | 6 | Content Creator, Marketing Professional |
-
-## Vocabulary
-
-- [Apple Keynote Vocabulary](vocabulary/apple-keynote-vocabulary.yaml) — Unified taxonomy mapping 4 resources, 7 actions, 1 workflow, and 2 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Apple Keynote Spectral Rules](rules/apple-keynote-spectral-rules.yml) — 22 rules across 8 categories enforcing Apple Keynote API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apple-keynote/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
