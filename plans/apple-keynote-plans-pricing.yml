@@ -1,0 +1,232 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Apple Keynote
+providerId: apple-keynote
+created: '2026-05-04'
+# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
+# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
+method: generated
+modified: '2026-05-05'
+reconciled: true
+tags:
+  - Apple
+  - iWork
+  - Presentations
+  - Productivity
+  - iCloud
+description: Apple Keynote is part of the free iWork productivity suite distributed by Apple, available
+  at no charge on macOS, iOS, iPadOS, and on the web through iCloud. The local automation surfaces (AppleScript,
+  JavaScript for Automation, Shortcuts) are free OS features. Cloud-synced storage of Keynote presentations
+  is governed by iCloud / iCloud+ storage tiers, which Apple prices as a separate consumer subscription.
+  There is no separate paid developer API plan for Keynote — the iCloud Keynote endpoints are internal
+  to Apple's web app and not a published commercial API.
+notes: 'Pricing here covers iCloud+ storage (which holds Keynote presentations) plus the free Keynote
+  app itself. There is no Keynote-specific paid plan.'
+sources:
+  - https://www.apple.com/keynote/
+  - https://www.apple.com/icloud/
+plans:
+  - id: apple-keynote-app
+    name: Keynote App
+    type: freemium
+    description: Free Keynote app on macOS, iOS, iPadOS, and the web (iCloud.com). Includes AppleScript
+      / JXA / Shortcuts automation surfaces on Apple platforms.
+    entries:
+      - label: Keynote app license
+        name: app_license
+        type: quota
+        metric: license
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: macOS / iOS / iPadOS / web app
+      - name: AppleScript automation
+      - name: JavaScript for Automation (JXA)
+      - name: Shortcuts actions
+      - name: Real-time iCloud collaboration
+  - id: apple-keynote-icloud-free
+    name: iCloud (Free Tier)
+    type: freemium
+    description: 5 GB free iCloud storage available to every Apple ID; covers Keynote presentations stored
+      via iCloud Drive.
+    entries:
+      - label: Free storage
+        name: storage_gb
+        type: quota
+        metric: GB
+        limit: 5
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: 5 GB iCloud storage (shared across iWork, Photos, Backup)
+  - id: apple-keynote-icloud-plus-50
+    name: iCloud+ 50 GB
+    type: subscription
+    description: Entry iCloud+ tier; 50 GB of cloud storage for Keynote and other iWork documents.
+    entries:
+      - label: 50 GB storage subscription
+        name: storage_50gb
+        type: subscription
+        metric: GB-month
+        limit: 50
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $0.99/month
+        userMultiplied: false
+    elements:
+      - name: 50 GB iCloud+ storage
+      - name: Private Relay
+      - name: Hide My Email
+      - name: Custom email domain
+  - id: apple-keynote-icloud-plus-200
+    name: iCloud+ 200 GB
+    type: subscription
+    description: 200 GB iCloud+ tier; supports Family Sharing.
+    entries:
+      - label: 200 GB storage subscription
+        name: storage_200gb
+        type: subscription
+        metric: GB-month
+        limit: 200
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $2.99/month
+        userMultiplied: false
+    elements:
+      - name: 200 GB iCloud+ storage
+      - name: Family Sharing
+      - name: Private Relay, Hide My Email, custom domain
+  - id: apple-keynote-icloud-plus-2tb
+    name: iCloud+ 2 TB
+    type: subscription
+    description: 2 TB iCloud+ tier with HomeKit Secure Video support.
+    entries:
+      - label: 2 TB storage subscription
+        name: storage_2tb
+        type: subscription
+        metric: GB-month
+        limit: 2048
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $9.99/month
+        userMultiplied: false
+    elements:
+      - name: 2 TB iCloud+ storage
+      - name: HomeKit Secure Video (unlimited cameras)
+      - name: Family Sharing
+  - id: apple-keynote-icloud-plus-6tb
+    name: iCloud+ 6 TB
+    type: subscription
+    description: 6 TB iCloud+ tier.
+    entries:
+      - label: 6 TB storage subscription
+        name: storage_6tb
+        type: subscription
+        metric: GB-month
+        limit: 6144
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $29.99/month
+        userMultiplied: false
+    elements:
+      - name: 6 TB iCloud+ storage
+      - name: Family Sharing
+  - id: apple-keynote-icloud-plus-12tb
+    name: iCloud+ 12 TB
+    type: subscription
+    description: 12 TB iCloud+ tier.
+    entries:
+      - label: 12 TB storage subscription
+        name: storage_12tb
+        type: subscription
+        metric: GB-month
+        limit: 12288
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: $59.99/month
+        userMultiplied: false
+    elements:
+      - name: 12 TB iCloud+ storage
+      - name: Family Sharing
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-11-01'
+  vocabulary: engine/economics/plans-canonical.yml
+  models:
+  - free
+  - subscription
+  units:
+  - data
+  - seat
+  plans:
+  - name: Keynote App
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - per-use
+  - name: iCloud (Free Tier)
+    access: freemium
+    model: free
+    model_how: derived
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 50 GB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 200 GB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 2 TB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 6 TB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
+  - name: iCloud+ 12 TB
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - data
+    periods:
+    - month
